@@ -24,3 +24,5 @@ displayDetails(product1)
 displayDetails(product2)
 displayDetails(product3)
 
+
+
