@@ -56,9 +56,15 @@ function filterProducts() {
     const filteredProducts = []
     const inputElement = document.getElementById('products-input')
     const searchTerm = inputElement.value
+    if (searchTerm === "") {
+        displayProducts()
+        return
+    }
     for(i = 0; i < products.length; i++) {
         const product = products[i]
-        if (product.name === searchTerm) {
+        const productNameLowerCase = product.name.toLowerCase()
+        const searchTermLowerCase = searchTerm.toLowerCase()
+        if (productNameLowerCase.includes(searchTermLowerCase)) {
             filteredProducts.push(product)
         }
     }
