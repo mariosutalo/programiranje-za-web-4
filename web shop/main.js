@@ -21,6 +21,8 @@ const products = [
     },
 ]
 
+const productsCart = []
+
 function displayProducts(filteredProducts) {
     const productsDiv = document.querySelector('.products-div')
     productsDiv.innerHTML = ""
@@ -47,9 +49,9 @@ function generateProductHTML(product) {
             <p class="ram-p">ram: ${product.ram}</p>
             <p class="gpu-p">grafika: ${product.gpu}</p>
             <span class="price-span">${product.price}$</span>
-            <button class="add-to-cart-btn">u košaricu</button>
+            <button id="${product.id}" class="add-to-cart-btn" onclick="addToCart(event)">u košaricu</button>
         </div>`
-        return generatedHtml
+    return generatedHtml
 }
 
 function filterProducts() {
@@ -60,7 +62,7 @@ function filterProducts() {
         displayProducts()
         return
     }
-    for(i = 0; i < products.length; i++) {
+    for (i = 0; i < products.length; i++) {
         const product = products[i]
         const productNameLowerCase = product.name.toLowerCase()
         const searchTermLowerCase = searchTerm.toLowerCase()
@@ -69,5 +71,25 @@ function filterProducts() {
         }
     }
     displayProducts(filteredProducts)
+}
+
+function addToCart(e) {
+    const productID = e.target.id
+    getProductById(productID)
+}
+
+function getProductById(productId) {
+    for (i = 0; i < products.length; i++) {
+        const product = products[i]
+        // double equal se koristi u ovom slučaju
+        // jer uspoređujemo string i number i ako su jednaki
+        // da uvjet bude zadovoljen, npr: "2" = 2
+        if(productId == product.id) {
+            // to do add to cart
+            productsCart.push(product)
+            break
+        }
+    }
+    
 }
 
