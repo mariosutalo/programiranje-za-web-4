@@ -8,12 +8,19 @@
     <script src="main.js"></script>
 </head>
 <body onload="displayProducts()">
-    <div class="search-products-div">
-        <input id="products-input" type="text" class="search-products-input">
-        <button class="search-products-btn" onclick="filterProducts()">
-            <img src="assets/images/search icon.png" alt="" class="search-products-img">
-        </button>
+    <div class="header-div">
+        <div class="search-products-div">
+            <input id="products-input" type="text" class="search-products-input">
+            <button class="search-products-btn" onclick="filterProducts()">
+                <img src="assets/images/search icon.png" alt="" class="search-products-img">
+            </button>
+        </div>
+        <div class="cart-div">
+            <img src="assets/images/cart icon.webp" alt="">
+            <span class="cart-total-price-span">0$</span>
+        </div>
     </div>
+
     <div class="products-div">
     </div>
 </body>
