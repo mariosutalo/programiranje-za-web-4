@@ -4,4 +4,4 @@ first_name varchar(50),
 last_name varchar(50)
 );
 
-select* from customers;
+select * from customers;
