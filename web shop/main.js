@@ -22,6 +22,7 @@ const products = [
 ]
 
 const productsCart = []
+let totalCartAmmount = 0
 
 function displayProducts(filteredProducts) {
     const productsDiv = document.querySelector('.products-div')
@@ -85,11 +86,27 @@ function getProductById(productId) {
         // jer uspoređujemo string i number i ako su jednaki
         // da uvjet bude zadovoljen, npr: "2" = 2
         if(productId == product.id) {
-            // to do add to cart
-            productsCart.push(product)
+            // pozovi funkciju updateCart ako je uvjet ispunjen
+            updateCart(product)
             break
         }
     }
-    
+}
+
+function updateCart(product) {
+    // dodaj proizvod u products polje(array)
+    productsCart.push(product)
+    // stavi ukupnu vrijednost kosarice na 0
+    totalCartAmmount = 0
+    // u for petlji ce se svi proizvodi ponovno zbrojiti i 
+    // staviti totalcartamount
+    for (let i = 0; i < productsCart.length; i++) {
+        const cartProduct = productsCart[i];
+        totalCartAmmount += cartProduct.price
+    }
+    // pomocu dom-a povuci span element u cartSpan varijablu
+    const cartSpan = document.getElementById('cart-span')
+    // postavi totalCartAmmount u cartSpan inner html
+    cartSpan.innerHTML = `${totalCartAmmount}$`
 }
 
