@@ -28,17 +28,15 @@ function displayProducts(filteredProducts) {
     const productsDiv = document.querySelector('.products-div')
     productsDiv.innerHTML = ""
     if (filteredProducts) {
-        for (let index = 0; index < filteredProducts.length; index++) {
-            const product = filteredProducts[index]
+        filteredProducts.forEach((product) => {
             const genHtml = generateProductHTML(product)
             productsDiv.innerHTML += genHtml
-        }
+        })
     } else {
-        for (let index = 0; index < products.length; index++) {
-            const product = products[index]
+        products.forEach((product) => {
             const genHtml = generateProductHTML(product)
             productsDiv.innerHTML += genHtml
-        }
+        })
     }
 }
 
@@ -63,14 +61,13 @@ function filterProducts() {
         displayProducts()
         return
     }
-    for (i = 0; i < products.length; i++) {
-        const product = products[i]
+    products.forEach((product) => {
         const productNameLowerCase = product.name.toLowerCase()
         const searchTermLowerCase = searchTerm.toLowerCase()
         if (productNameLowerCase.includes(searchTermLowerCase)) {
             filteredProducts.push(product)
         }
-    }
+    })
     displayProducts(filteredProducts)
 }
 
@@ -80,17 +77,15 @@ function addToCart(e) {
 }
 
 function getProductById(productId) {
-    for (i = 0; i < products.length; i++) {
-        const product = products[i]
+    products.forEach((product) => {
         // double equal se koristi u ovom slučaju
         // jer uspoređujemo string i number i ako su jednaki
         // da uvjet bude zadovoljen, npr: "2" = 2
-        if(productId == product.id) {
+        if (productId == product.id) {
             // pozovi funkciju updateCart ako je uvjet ispunjen
             updateCart(product)
-            break
         }
-    }
+    })
 }
 
 function updateCart(product) {
@@ -98,15 +93,33 @@ function updateCart(product) {
     productsCart.push(product)
     // stavi ukupnu vrijednost kosarice na 0
     totalCartAmmount = 0
-    // u for petlji ce se svi proizvodi ponovno zbrojiti i 
+    // u for each petlji ce se svi proizvodi ponovno zbrojiti i 
     // staviti totalcartamount
-    for (let i = 0; i < productsCart.length; i++) {
-        const cartProduct = productsCart[i];
-        totalCartAmmount += cartProduct.price
-    }
+    productsCart.forEach((product) => {
+        totalCartAmmount += product.price
+    })
     // pomocu dom-a povuci span element u cartSpan varijablu
     const cartSpan = document.getElementById('cart-span')
     // postavi totalCartAmmount u cartSpan inner html
     cartSpan.innerHTML = `${totalCartAmmount}$`
 }
 
+function forEachDemo() {
+    const numbers = [2, 5, 8, 7, 8]
+    let sum = 0
+    // for (let index = 0; index < numbers.length; index++) {
+    //     const element = numbers[index];
+    //     sum += element
+    // }
+    numbers.forEach((number) => {
+        sum += number
+    })
+
+    console.log(`Sum of numbers is ${sum}`)
+}
+
+// for (let index = 0; index < filteredProducts.length; index++) {
+//     const product = filteredProducts[index]
+//     const genHtml = generateProductHTML(product)
+//     productsDiv.innerHTML += genHtml
+// }
