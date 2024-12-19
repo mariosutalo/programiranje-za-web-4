@@ -1,0 +1,11 @@
+footer {
+    border-top: 1px gray solid;
+}
+
+body {
+    margin: 0;
+}
+
+footer p {
+    text-align: center;
+}
