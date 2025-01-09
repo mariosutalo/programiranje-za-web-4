@@ -34,3 +34,11 @@ app.get('/', (req, res) => {
     })
     res.render('index', { title: 'Products' })
 })
+
+app.get('/blog', (req, res) => {
+    res.render('blog', { title: 'Blog' })
+})
+
+app.get('/about', (req, res) => {
+    res.render('about', { title: 'About' })
+})
