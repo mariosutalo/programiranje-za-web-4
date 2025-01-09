@@ -29,8 +29,19 @@ app.get('/', (req, res) => {
     db.query('select * from products', (error, result) => {
         if (error) {
             console.log('error selecting products', error)
+            res.render('index', { title: 'Products', error: error })
+        } else {
+            console.log('products:', result)
+            res.render('index', { title: 'Products', productsFromDB: result })
         }
-        console.log('products are:', result)
+        
     })
-    res.render('index', { title: 'Products' })
+})
+
+app.get('/blog', (req, res) => {
+    res.render('blog', { title: 'Blog' })
+})
+
+app.get('/about', (req, res) => {
+    res.render('about', { title: 'About' })
 })
