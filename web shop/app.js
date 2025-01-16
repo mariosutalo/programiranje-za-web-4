@@ -1,5 +1,7 @@
+const { error } = require('console')
 const express = require('express')
 const mysql = require('mysql2')
+const { title } = require('process')
 
 const app = express()
 
@@ -31,8 +33,7 @@ app.get('/', (req, res) => {
             console.log('error selecting products', error)
             res.render('index', { title: 'Products', error: error })
         } else {
-            console.log('products:', result)
-            res.render('index', { title: 'Products', productsFromDB: result })
+            getCategoriesFromDb(res, result)
         }
         
     })
@@ -45,3 +46,14 @@ app.get('/blog', (req, res) => {
 app.get('/about', (req, res) => {
     res.render('about', { title: 'About' })
 })
+
+function getCategoriesFromDb(res, products) {
+    db.query('select * from categories', (error, result) =>{
+        if (error) {
+            res.render('index', {title: title, error: 'Error connecting to DB!'})
+        } else {
+            console.log(`Products : ${products}, categories: ${result} `)
+            res.render('index', {categories: result, products: products, title: title})
+        }
+    })
+}
