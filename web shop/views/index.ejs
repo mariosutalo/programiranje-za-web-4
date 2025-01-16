@@ -1,13 +1,40 @@
 <!DOCTYPE html>
 <%- include('./partials/head.ejs') %>
-
   <body>
     <%- include('./partials/header.ejs') %>
+    <div class="page-div">
       <main>
-        <% productsFromDb.forEach(product => { %>
-         <p>product name: <%= product.name %></p>
-         <p>product price: <%= product.price %></p>
-        <% }) %>
+        <div class="filter-products-div">
+          <form action="filter_products" method="get">
+            <label class="container" for="gaming">Gaming
+              <input type="checkbox" id="gaming" name="category" value="gaming">
+              <span class="checkmark-span"></span>
+            </label>
+            <label class="container" for="office">Office
+              <input type="checkbox" id="office" name="category" value="office">
+              <span class="checkmark-span"></span>
+            </label>
+          </form>
+        </div>
+        <div class="products-div">
+          <div class="sort-products-div">
+            <form action="sort_products" class="sort-form">
+              <label for="sort-options">Sort By</label>
+              <select name="sort_by" id="sort-options">
+                <option value="name_asc">Name A - Z</option>
+                <option value="name_desc">Name A - Z</option>
+                <option value="price_asc">Lowest Price</option>
+                <option value="price_desc">Highest Price</option>
+                <option value="newest">Newest</option>
+              </select>
+            </form>
+          </div>
+          <% products.forEach(product => { %>
+            <p>product name: <%= product.name %></p>
+            <p>product price: <%= product.price %></p>
+           <% }) %>
+        </div>
       </main>
-      <%- include('./partials/footer.ejs') %>
+    </div>
+    <%- include('./partials/footer.ejs') %>
   </body>

@@ -29,10 +29,10 @@ app.get('/', (req, res) => {
     db.query('select * from products', (error, result) => {
         if (error) {
             console.log('error selecting products', error)
-            res.render('index', { title: 'Products', error: error})
+            res.render('index', { title: 'Products', error: error })
         } else {
             console.log('products:', result)
-            res.render('index', { title: 'Products', productsFromDb: result})
+            getCategoriesFromDb(res, result, 'Products')
         }
     })
 })
@@ -44,3 +44,14 @@ app.get('/blog', (req, res) => {
 app.get('/about', (req, res) => {
     res.render('about', { title: 'About' })
 })
+
+function getCategoriesFromDb(res, products, title) {
+    db.query('select * from categories', (error, result) => {
+        if (error) {
+            res.render('index', { title: title, error: 'Error connecting to DB!!!' })
+        } else {
+            console.log(`Products: ${products}, categories: ${result}`)
+            res.render('index', {categories: result, products: products, title: title})
+        }
+    })
+}
