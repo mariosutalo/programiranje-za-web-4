@@ -29,10 +29,31 @@
               </select>
             </form>
           </div>
-          <% products.forEach(product => { %>
-            <p>product name: <%= product.name %></p>
-            <p>product price: <%= product.price %></p>
-           <% }) %>
+          <div class="products-grid-div">
+            <% products.forEach(product => { %>
+              <div class="grid-product-card-div">
+                <img class="grid-product-image" src="<%= `assets/product images/${product.image_url}` %>" alt="">
+                <h3><%= product.name %></h3>
+                <div class="rating-img-span-div">
+                  <img class="product-star-icon" src="assets/star icon.png" alt="">
+                  <span><%=`(${product.likes})`%></span>
+                </div>
+                <ul>
+                  <li>Podnožje: Intel LGA1700</li>
+                  <li>Vrsta memorije: DDR4</li>
+                </ul>
+                <h4>
+                  <%=`${product.price} €`%>
+                </h4>
+                <div class="price-heart-div">
+                  <span class="product-price-span">
+                    <%=`- ${(product.price * 0.05).toFixed(2)} E-BANK`%>
+                  </span>
+                  <img class="product-heart-icon" src="assets/heart icon.png" alt="">
+                </div>
+              </div>
+             <% }) %>
+          </div>
         </div>
       </main>
     </div>
