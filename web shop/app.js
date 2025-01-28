@@ -32,7 +32,7 @@ app.get('/', (req, res) => {
             res.render('index', { title: 'Products', error: error })
         } else {
             console.log('products:', result)
-            getCategoriesFromDb(res, result, 'Products')
+            getCategoriesFromDb(res, [], 'Products')
         }
     })
 })
@@ -50,7 +50,7 @@ function getCategoriesFromDb(res, products, title) {
         if (error) {
             res.render('index', { title: title, error: 'Error connecting to DB!!!' })
         } else {
-            console.log(`Products: ${products}, categories: ${result}`)
+            console.log(`Products: ${products}, categories: ${result ?? []}`)
             res.render('index', {categories: result, products: products, title: title})
         }
     })

@@ -1,61 +1,69 @@
 <!DOCTYPE html>
 <%- include('./partials/head.ejs') %>
-  <body>
-    <%- include('./partials/header.ejs') %>
-    <div class="page-div">
-      <main>
-        <div class="filter-products-div">
-          <form action="filter_products" method="get">
-            <label class="container" for="gaming">Gaming
-              <input type="checkbox" id="gaming" name="category" value="gaming">
-              <span class="checkmark-span"></span>
-            </label>
-            <label class="container" for="office">Office
-              <input type="checkbox" id="office" name="category" value="office">
-              <span class="checkmark-span"></span>
-            </label>
+
+<body>
+  <%- include('./partials/header.ejs') %>
+  <div class="page-div">
+    <main>
+      <div class="filter-products-div">
+        <form action="filter_products" method="get">
+          <label class="container" for="gaming">Gaming
+            <input type="checkbox" id="gaming" name="category" value="gaming">
+            <span class="checkmark-span"></span>
+          </label>
+          <label class="container" for="office">Office
+            <input type="checkbox" id="office" name="category" value="office">
+            <span class="checkmark-span"></span>
+          </label>
+        </form>
+      </div>
+      <div class="products-div">
+        <div class="sort-products-div">
+          <form action="sort_products" class="sort-form">
+            <label for="sort-options">Sort By</label>
+            <select name="sort_by" id="sort-options">
+              <option value="name_asc">Name A - Z</option>
+              <option value="name_desc">Name A - Z</option>
+              <option value="price_asc">Lowest Price</option>
+              <option value="price_desc">Highest Price</option>
+              <option value="newest">Newest</option>
+            </select>
           </form>
         </div>
-        <div class="products-div">
-          <div class="sort-products-div">
-            <form action="sort_products" class="sort-form">
-              <label for="sort-options">Sort By</label>
-              <select name="sort_by" id="sort-options">
-                <option value="name_asc">Name A - Z</option>
-                <option value="name_desc">Name A - Z</option>
-                <option value="price_asc">Lowest Price</option>
-                <option value="price_desc">Highest Price</option>
-                <option value="newest">Newest</option>
-              </select>
-            </form>
+        <div class="products-grid-div">
+          <% if (locals.error) {%>
+          <h3> Error loading products</h3>
+          <% return %>
+          <% } else if (products.length === 0){ %>
+          <p>No products</p>
+          <% } else {
+          locals.products?.forEach(product => { %>
+          <div class="grid-product-card-div">
+            <img class="grid-product-image" src="<%= `assets/product images/${product.image_url}` %>" alt="">
+          <h3><%= product.name %></h3>
+          <div class="rating-img-span-div">
+            <img class="product-star-icon" src="assets/star icon.png" alt="">
+            <span><%=`(${product.likes})`%></span>
           </div>
-          <div class="products-grid-div">
-            <% products.forEach(product => { %>
-              <div class="grid-product-card-div">
-                <img class="grid-product-image" src="<%= `assets/product images/${product.image_url}` %>" alt="">
-                <h3><%= product.name %></h3>
-                <div class="rating-img-span-div">
-                  <img class="product-star-icon" src="assets/star icon.png" alt="">
-                  <span><%=`(${product.likes})`%></span>
-                </div>
-                <ul>
-                  <li>Podnožje: Intel LGA1700</li>
-                  <li>Vrsta memorije: DDR4</li>
-                </ul>
-                <h4>
-                  <%=`${product.price} €`%>
-                </h4>
-                <div class="price-heart-div">
-                  <span class="product-price-span">
-                    <%=`- ${(product.price * 0.05).toFixed(2)} E-BANK`%>
-                  </span>
-                  <img class="product-heart-icon" src="assets/heart icon.png" alt="">
-                </div>
-              </div>
-             <% }) %>
+          <ul>
+            <li>Podnožje: Intel LGA1700</li>
+            <li>Vrsta memorije: DDR4</li>
+          </ul>
+          <h4>
+            <%=`${product.price} €`%>
+          </h4>
+          <div class="price-heart-div">
+            <span class="product-price-span">
+              <%=`- ${(product.price * 0.05).toFixed(2)} E-BANK`%>
+            </span>
+            <img class="product-heart-icon" src="assets/heart icon.png" alt="">
           </div>
         </div>
-      </main>
-    </div>
-    <%- include('./partials/footer.ejs') %>
-  </body>
+        <% })
+        } %>
+      </div>
+  </div>
+  </main>
+  </div>
+  <%- include('./partials/footer.ejs') %>
+</body>
