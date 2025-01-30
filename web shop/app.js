@@ -32,7 +32,7 @@ app.get('/', (req, res) => {
             res.render('index', { title: 'Products', error: error })
         } else {
             console.log('products:', result)
-            getCategoriesFromDb(res, [], 'Products')
+            getCategoriesFromDb(res, result, 'Products')
         }
     })
 })

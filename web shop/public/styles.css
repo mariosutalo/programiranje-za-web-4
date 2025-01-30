@@ -4,6 +4,7 @@
     --text: rgb(18, 18, 18);
 }
 
+
 footer {
     border-top: 1px gray solid;
 }
@@ -118,7 +119,7 @@ main {
 }
 
 .products-div {
-    height: 100vh;
+    min-height: 100vh;
     flex: 1;
     padding: 16px;
     border: 0px;
@@ -253,3 +254,35 @@ main {
     justify-content: space-between;
     align-items: center;
 }
+
+.pagination-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  /* Pagination links */
+  .pagination-div a {
+    color: var(--primary);
+    text-decoration: none;
+    padding: 8px 16px;
+    margin: 0 4px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    transition: background-color 0.3s, color 0.3s;
+    font-size: var(--2px);
+  }
+  
+  /* Active page */
+  .pagination-div a.active {
+    background-color: var(--primary);
+    color: #fff;
+    border-color: var(--primary);
+  }
+  
+  /* Hover effect */
+  .pagination-div a:hover:not(.active) {
+    background-color: #f1f1f1;
+    color: var(--primary);
+  }
