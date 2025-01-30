@@ -31,11 +31,11 @@
               </form>
             </div>
             <div class="products-grid-div">
-              <% if (locals.error) {%>
-                <h3> Error loading products</h3>
-                <% } else if (products.length===0){ %>
-                  <p>No products</p>
-                  <% } else { locals.products?.forEach(product=> { %>
+              <% if(locals.error) {%>
+                <h3>DB Error!!!</h3>
+                <% } else if (locals.products.length===0) { %>
+                  <h2>No products</h2>
+                  <% } else { products?.forEach(product=> { %>
                     <div class="grid-product-card-div">
                       <img class="grid-product-image" src="<%= `assets/product images/${product.image_url}` %>" alt="">
                       <h3>

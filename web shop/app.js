@@ -28,10 +28,10 @@ app.use(express.urlencoded({ extended: true }));
 app.get('/', (req, res) => {
     db.query('select * from products', (error, result) => {
         if (error) {
-            console.log('error selecting products', error)
+            console.log('db error selecting products', error)
             res.render('index', { title: 'Products', error: error })
         } else {
-            console.log('products:', result)
+            // console.log('products:', result)
             getCategoriesFromDb(res, result, 'Products')
         }
     })
@@ -48,9 +48,9 @@ app.get('/about', (req, res) => {
 function getCategoriesFromDb(res, products, title) {
     db.query('select * from categories', (error, result) => {
         if (error) {
-            res.render('index', { title: title, error: 'Error connecting to DB!!!' })
+            res.render('index', { title: title, error: 'Db Error!!!' })
         } else {
-            console.log(`Products: ${products}, categories: ${result ?? []}`)
+            // console.log(`Products: ${products}, categories: ${result ?? []}`)
             res.render('index', {categories: result, products: products, title: title})
         }
     })
