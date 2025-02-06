@@ -1,7 +1,9 @@
+/* css varijable */
 :root {
     --primary: #be3279;
     --text: rgb(18, 18, 18);
 }
+
 
 footer {
     border-top: 1px gray solid;
@@ -94,12 +96,11 @@ header {
     gap: 10px;
 }
 
-
-.footer-div{
+.footer-div {
     padding: 20px 40px;
 }
 
-.page-div{
+.page-div {
     min-height: 100vh;
     width: 1100px;
     margin-left: auto;
@@ -118,7 +119,7 @@ main {
 }
 
 .products-div {
-    height: 100vh;
+    min-height: 100vh;
     flex: 1;
     padding: 16px;
     border: 0px;
@@ -202,3 +203,86 @@ main {
     border-width: 0 3px 3px 0;
     transform: rotate(45deg);
 }
+
+.products-grid-div {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-top: 20px;
+    column-gap: 20px;
+    row-gap: 20px;
+}
+
+.product-star-icon {
+    width: 16px;
+}
+
+.product-heart-icon {
+    width: 35px;
+}
+
+.grid-product-image {
+    width: 100%;
+    height: 250px;
+    object-fit: contain;
+}
+
+.grid-product-card-div {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 15px;
+}
+
+.rating-img-span-div {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+
+.grid-product-card-div ul {
+    padding-inline-start: 20px;
+}
+
+.product-price-span {
+    padding: 6px 15px;
+    text-transform: uppercase;
+    font-weight: 600;
+    background-color: var(--primary);
+    color: white;
+}
+
+.price-heart-div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pagination-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  /* Pagination links */
+  .pagination-div a {
+    color: var(--primary);
+    text-decoration: none;
+    padding: 8px 16px;
+    margin: 0 4px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    transition: background-color 0.3s, color 0.3s;
+    font-size: var(--2px);
+  }
+  
+  /* Active page */
+  .pagination-div a.active {
+    background-color: var(--primary);
+    color: #fff;
+    border-color: var(--primary);
+  }
+  
+  /* Hover effect */
+  .pagination-div a:hover:not(.active) {
+    background-color: #f1f1f1;
+    color: var(--primary);
+  }
