@@ -17,7 +17,7 @@ db.connect((error) => {
     }
     console.log('Db Connection succesfull')
 })
-
+    
 app.set('view engine', 'ejs')
 
 app.listen(3000)
