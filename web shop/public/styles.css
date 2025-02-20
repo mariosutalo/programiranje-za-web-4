@@ -2,6 +2,9 @@
 :root {
     --primary: #be3279;
     --text: rgb(18, 18, 18);
+    --18px: calc(18rem/16);
+    --24px: calc(24rem/16);
+    --20px: calc(20rem/16);
 }
 
 
@@ -286,3 +289,17 @@ main {
     background-color: #f1f1f1;
     color: var(--primary);
   }
+
+  .show-product-details-link {
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: var(--20px);
+  }
+
+  .show-product-details-link:hover {
+    color: var(--primary);
+    text-decoration: underline;
+  }
+
+

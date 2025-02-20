@@ -38,9 +38,9 @@
                   <% } else { locals.products.forEach(product=> { %>
                     <div class="grid-product-card-div">
                       <img class="grid-product-image" src="<%= `assets/product images/${product.image_url}` %>" alt="">
-                      <h3>
+                      <a class="show-product-details-link" href="<%= `product?product_id=${product.id}` %>">
                         <%= product.name %>
-                      </h3>
+                      </a>
                       <div class="rating-img-span-div">
                         <img class="product-star-icon" src="assets/star icon.png" alt="">
                         <span>

@@ -50,6 +50,19 @@ app.get('/', async (req, res) => {
     }
 })
 
+app.get('/product', async (req, res) => {
+    const productId = req.query.product_id
+    const getProductDetailsQuery = `select * from products where id = ${productId}`
+    try {
+        const [productDetailsResult, fields] = await db.query(getProductDetailsQuery)
+        console.log('Product details:', productDetailsResult[0])
+        let productDetails = productDetailsResult[0]
+        res.render('product details', { title: productDetails.name, productDetails: productDetails })
+    } catch (error) {
+        console.log('Error fetching product details', error)
+    }
+})
+
 app.get('/blog', (req, res) => {
     res.render('blog', { title: 'Blog' })
 })

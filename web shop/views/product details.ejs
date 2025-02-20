@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<%- include('./partials/head.ejs') %>
+
+  <body>
+    <%- include('./partials/header.ejs') %>
+      <main>
+        <% if (locals.productDetails) { %>
+            <%= locals.productDetails.name %> 
+        <% } %>
+      </main>
+      <%- include('./partials/footer.ejs') %>
+  </body>
