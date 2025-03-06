@@ -52,12 +52,37 @@ app.get('/', async (req, res) => {
 
 app.get('/product', async (req, res) => {
     const productId = req.query.product_id
-    const getProductDetailsQuery = `select * from products where id = ${productId}`
+    const getProductDetailsQuery = `select products.*, product_images.image_url
+        from products left join product_images
+        on products.id = product_images.product_id
+        where products.id = ${productId};`
     try {
         const [productDetailsResult, fields] = await db.query(getProductDetailsQuery)
-        console.log('Product details:', productDetailsResult[0])
-        let productDetails = productDetailsResult[0]
-        res.render('product details', { title: productDetails.name, productDetails: productDetails })
+        // console.log('Product details:', productDetailsResult)
+        const productMap = new Map()
+        productDetailsResult.forEach((row) => {
+            if (!productMap.has(row.id)) {
+                productMap.set(row.id, {
+                    id: row.id,
+                    productName: row.name,
+                    price: row.price,
+                    stock: row.stock,
+                    likes: row.likes,
+                    waranty: row.waranty,
+                    description: row.description,
+                    images: []
+                })
+            }
+            if (row.image_url) {
+                productMap.get(row.id).images.push(row.image_url)
+            }
+        })
+        const product = productMap.values().next().value
+        if (product) {
+            console.log(`product with images, ${product.images}`)
+        }
+
+        res.render('product details', { title: product.productName, productDetails: product })
     } catch (error) {
         console.log('Error fetching product details', error)
     }
