@@ -15,14 +15,6 @@ const db = await mysql.createConnection({
     password: 'password'
 });
 
-db.connect((error) => {
-    if (error) {
-        console.log('Error connecting to db', error)
-        return
-    }
-    console.log('Db Connection succesfull')
-})
-
 app.set('view engine', 'ejs')
 
 app.listen(3000)
