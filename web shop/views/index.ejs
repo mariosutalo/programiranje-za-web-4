@@ -5,7 +5,7 @@
     <%- include('./partials/header.ejs') %>
       <div class="page-div">
         <main>
-          <div class="filter-products-div">
+          <!-- <div class="filter-products-div">
             <form action="filter_products" method="get">
               <label class="container" for="gaming">Gaming
                 <input type="checkbox" id="gaming" name="category" value="gaming">
@@ -16,7 +16,7 @@
                 <span class="checkmark-span"></span>
               </label>
             </form>
-          </div>
+          </div> -->
           <div class="products-div">
             <div class="sort-products-div">
               <form action="sort_products" class="sort-form">
@@ -35,12 +35,12 @@
                 <h3>DB Error!!!</h3>
                 <% } else if (locals.products.length===0) { %>
                   <h2>No products</h2>
-                  <% } else { products?.forEach(product=> { %>
+                  <% } else { locals.products.forEach(product=> { %>
                     <div class="grid-product-card-div">
                       <img class="grid-product-image" src="<%= `assets/product images/${product.image_url}` %>" alt="">
-                      <h3>
+                      <a class="show-product-details-link" href="<%= `product?product_id=${product.id}` %>">
                         <%= product.name %>
-                      </h3>
+                      </a>
                       <div class="rating-img-span-div">
                         <img class="product-star-icon" src="assets/star icon.png" alt="">
                         <span>
@@ -64,14 +64,13 @@
                     <% }) } %>
             </div>
             <div class="pagination-div">
-              <a href="#">&laquo;</a> <!-- Previous -->
-              <a href="#" class="active">1</a>
-              <a href="#">2</a>
-              <a href="#">3</a>
-              <a href="#">4</a>
-              <a href="#">5</a>
-              <a href="#">6</a>
-              <a href="#">&raquo;</a> <!-- Next -->
+              <% if (locals.currentPage > 1) { %>
+               <a href="?page=<%= locals.currentPage - 1 %>">Previous</a>
+              <% } %>
+              <span><%= locals.currentPage %> of <%= locals.totalPages %></span>
+              <% if (locals.currentPage < locals.totalPages) { %>
+                <a href="?page=<%= currentPage + 1 %>">Next</a>
+               <% } %>
             </div>
           </div>
         </main>

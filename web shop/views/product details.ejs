@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<%- include('./partials/head.ejs') %>
+
+  <body>
+    <%- include('./partials/header.ejs') %>
+      <main>
+        <!-- <% if (locals.productDetails) { %>
+            <%= locals.productDetails.name %> 
+        <% } %> -->
+        <div class="section-div">
+          <h1 class="product-title-h1">
+            Matična ploča Gigabyte H610M S2H V2 DDR5, Intel LGA1700, Micro ATX
+          </h1>
+          <div class="product-details-div">
+            <img class="product-img" src="assets/H610M-S2H-V2_1.jpg" alt="">
+            <div class="product-specs-div">
+              <h3 class="main-product-specs-h3">
+                GLAVNE SPECIFIKACIJE:
+              </h3>
+              <ul class="product-specs-ul">
+                <li>> Podnožje: Intel LGA1700</li>
+                <li>> Vrsta memorije: DDR5</li>
+                <li>> Veličina: Micro ATX</li>
+                <li>> WiFi/Bluetooth: NE</li>
+              </ul>
+              <a href="#all-specs" class="show-all-specs-a">Sve specifikacije</a>
+            </div>
+            <div class="price-info-div">
+              <h2 class="product-price-h2">74,99€</h2>
+              <p class="promo-price-p">Promotivna cijena vrijedi za sve oblike plaćanja (do 24 rate beskamatno)</p>
+              <p class="product-warranty-p green-p">36 mj. jamstvo</p>
+              <p class="product-stock-p green-p">
+                Na zalihi <span>vrijeme isporuke: 1 - 3 dana</span>
+              </p>
+              <div class="cart-quantity-label-div">
+                <div class="add-to-cart-div">
+                  <button class="decrease-quantity-btn">-</button>
+                  <span class="product-quantity-span">2</span>
+                  <button class="increase-quantity-btn">+</button>
+                </div>
+                <span class="quantity-label-span">Količina</span>
+              </div>
+              <button class="add-to-cart-btn">
+                <img src="assets/cart icon white.png" alt="" class="add-to-cart-img">
+                <span>U košaricu</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </main>
+      <%- include('./partials/footer.ejs') %>
+  </body>
