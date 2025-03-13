@@ -51,10 +51,10 @@ app.get('/product', async (req, res) => {
     try {
         const [productDetailsResult, fields] = await db.query(getProductDetailsQuery)
         // console.log('Product details:', productDetailsResult)
-        const productMap = new Map()
+        let product = null
         productDetailsResult.forEach((row) => {
-            if (!productMap.has(row.id)) {
-                productMap.set(row.id, {
+            if (product === null) {
+                product = {
                     id: row.id,
                     productName: row.name,
                     price: row.price,
@@ -62,14 +62,11 @@ app.get('/product', async (req, res) => {
                     likes: row.likes,
                     waranty: row.waranty,
                     description: row.description,
-                    images: []
-                })
+                    images: [] 
+                }
             }
-            if (row.image_url) {
-                productMap.get(row.id).images.push(row.image_url)
-            }
+            product.images.push(row.image_url)
         })
-        const product = productMap.values().next().value
         if (product) {
             console.log(`product with images, ${product.images}`)
         }
