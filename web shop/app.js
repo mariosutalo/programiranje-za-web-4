@@ -56,8 +56,9 @@ app.get('/product', async (req, res) => {
             if (product === null) {
                 product = {
                     id: row.id,
-                    productName: row.name,
+                    name: row.name,
                     price: row.price,
+                    image: row.image_url,
                     stock: row.stock,
                     likes: row.likes,
                     waranty: row.waranty,
@@ -67,11 +68,13 @@ app.get('/product', async (req, res) => {
             }
             product.images.push(row.image_url)
         })
-        if (product) {
+        if (product !== null) {
             console.log(`product with images, ${product.images}`)
+            res.render('product details', { title: product.productName, productDetails: product })
+        } else {
+            // to do implement product doesnt exit page
         }
 
-        res.render('product details', { title: product.productName, productDetails: product })
     } catch (error) {
         console.log('Error fetching product details', error)
     }
