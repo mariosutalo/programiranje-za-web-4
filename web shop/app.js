@@ -1,5 +1,6 @@
 import express from 'express'
 import mysql from 'mysql2/promise'
+import productSpecsToArray from './util/util.js'
 
 const app = express()
 
@@ -57,6 +58,7 @@ app.get('/product', async (req, res) => {
                 product = {
                     id: row.id,
                     name: row.name,
+                    specs: productSpecsToArray(row.specs),
                     price: row.price,
                     image: row.image_url,
                     stock: row.stock,
