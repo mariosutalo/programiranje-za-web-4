@@ -4,26 +4,30 @@
   <body>
     <%- include('./partials/header.ejs') %>
       <main>
-        <!-- <% if (locals.productDetails) { %>
-            <%= locals.productDetails.name %> 
-        <% } %> -->
         <div class="section-div">
           <h1 class="product-title-h1">
-            Matična ploča Gigabyte H610M S2H V2 DDR5, Intel LGA1700, Micro ATX
+            <%= locals.productDetails.name %>
           </h1>
           <div class="product-details-div">
-            <img class="product-img" src="assets/H610M-S2H-V2_1.jpg" alt="">
+            <% if (locals.productDetails.image) { %>
+              <img class="product-img" src="assets/product images/<%= locals.productDetails.image  %>" alt="">
+            <% } else { %>
+              <img class="product-img" src="assets/no image placeholder.png" alt="">
+            <% } %>
+             
             <div class="product-specs-div">
               <h3 class="main-product-specs-h3">
                 GLAVNE SPECIFIKACIJE:
               </h3>
-              <ul class="product-specs-ul">
-                <li>> Podnožje: Intel LGA1700</li>
-                <li>> Vrsta memorije: DDR5</li>
-                <li>> Veličina: Micro ATX</li>
-                <li>> WiFi/Bluetooth: NE</li>
-              </ul>
-              <a href="#all-specs" class="show-all-specs-a">Sve specifikacije</a>
+              <% if (locals.productDetails.specs.length > 0) { %>
+                <ul class="product-specs-ul">
+                  <% locals.productDetails.specs.forEach(spec => { %>
+                    <li>> <%= spec  %></li>
+                  <% }) %>
+                </ul>
+                <a href="#all-specs" class="show-all-specs-a">Sve specifikacije</a>
+              <% } %>
+              
             </div>
             <div class="price-info-div">
               <h2 class="product-price-h2">74,99€</h2>

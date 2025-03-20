@@ -1,5 +1,6 @@
 import express from 'express'
 import mysql from 'mysql2/promise'
+import productSpecsToArray from './util/util.js'
 
 const app = express()
 
@@ -57,7 +58,9 @@ app.get('/product', async (req, res) => {
                 product = {
                     id: row.id,
                     name: row.name,
+                    specs: productSpecsToArray(row.specs),
                     price: row.price,
+                    image: row.image_url,
                     stock: row.stock,
                     likes: row.likes,
                     waranty: row.waranty,
@@ -67,11 +70,13 @@ app.get('/product', async (req, res) => {
             }
             product.images.push(row.image_url)
         })
-        if (product) {
+        if (product !== null) {
             console.log(`product with images, ${product.images}`)
+            res.render('product details', { title: product.productName, productDetails: product })
+        } else {
+            // to do implement product doesnt exit page
         }
 
-        res.render('product details', { title: product.productName, productDetails: product })
     } catch (error) {
         console.log('Error fetching product details', error)
     }

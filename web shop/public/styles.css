@@ -2,6 +2,9 @@
 :root {
     --primary: #be3279;
     --text: rgb(18, 18, 18);
+    --18px: calc(18rem/16);
+    --24px: calc(24rem/16);
+    --20px: calc(20rem/16);
     --16px: calc(16rem/16);
     --32px: calc(32rem/16);
     --10px: calc(10rem/16);
@@ -11,8 +14,6 @@
     --color2: #f00;
     --color3: #89ba19;
     --28px: calc(28rem/16);
-    --24px: calc(24rem/16);
-    --20px: calc(20rem/16);
 }
 
 
@@ -298,7 +299,20 @@ main {
     color: var(--primary);
   }
 
+  .show-product-details-link {
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: var(--20px);
+  }
 
+  .show-product-details-link:hover {
+    color: var(--primary);
+    text-decoration: underline;
+  }
+
+
+  /* product details css, to do: move to separate file */
 
   .product-details-div {
     display: grid;
