@@ -63,7 +63,7 @@ app.get('/product', async (req, res) => {
                     image: row.image_url,
                     stock: row.stock,
                     likes: row.likes,
-                    waranty: row.waranty,
+                    warranty: row.warranty,
                     description: row.description,
                     images: [] 
                 }

@@ -121,7 +121,6 @@ header {
 
 main {
     min-height: 100vh;
-    display: flex;
 }
 
 .filter-products-div {
@@ -404,6 +403,9 @@ main {
 
 .green-p {
     color: var(--color3);
+}
+
+.product-stock-p {
     font-family: var(--primary-font);
     font-size: var(--16px);
     font-weight: 700;
@@ -431,6 +433,24 @@ main {
     align-items: center;
     gap: 10px;
     font-family: var(--primary-font);
+    color: var(--text);
+    font-weight: 600;
+}
+
+.red-p {
+    color: var(--color2);
+}
+
+.product-desc-title-h2 {
+    font-family: var(--primary-font);
+}
+
+.product-desc-p {
+    font-weight: 300;
+    font-family: var(--primary-font);
+    color: var(--text);
+    font-size: var(--16px);
+    line-height: var(--28px);
 }
 
 @media only screen and (max-width: 600px) {

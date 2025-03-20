@@ -30,12 +30,23 @@
               
             </div>
             <div class="price-info-div">
-              <h2 class="product-price-h2">74,99€</h2>
+              <h2 class="product-price-h2">
+                <%= locals.productDetails.price %>€
+              </h2>
               <p class="promo-price-p">Promotivna cijena vrijedi za sve oblike plaćanja (do 24 rate beskamatno)</p>
-              <p class="product-warranty-p green-p">36 mj. jamstvo</p>
-              <p class="product-stock-p green-p">
-                Na zalihi <span>vrijeme isporuke: 1 - 3 dana</span>
+              <p class="product-warranty-p green-p">
+                <%= locals.productDetails.warranty %> mj. jamstvo
               </p>
+              <% if (locals.productDetails.stock > 0) { %>
+                <p class="product-stock-p green-p">
+                  Na zalihi <span>vrijeme isporuke: 1 - 3 dana</span>
+                </p>
+              <% } else { %>
+              <p class="product-stock-p red-p">
+                Nije dostupno
+              </p>
+              <% } %>
+
               <div class="cart-quantity-label-div">
                 <div class="add-to-cart-div">
                   <button class="decrease-quantity-btn">-</button>
@@ -44,12 +55,18 @@
                 </div>
                 <span class="quantity-label-span">Količina</span>
               </div>
-              <button class="add-to-cart-btn">
+              <a class="add-to-cart-btn" href="#">
                 <img src="assets/cart icon white.png" alt="" class="add-to-cart-img">
                 <span>U košaricu</span>
-              </button>
+              </a>
             </div>
           </div>
+        </div>
+        <div class="section-div">
+          <h2 class="product-desc-title-h2">OPIS</h2>
+          <p class="product-desc-p">
+            <%= locals.productDetails.description %>
+          </p>
         </div>
       </main>
       <%- include('./partials/footer.ejs') %>
