@@ -45,12 +45,18 @@ app.get('/', async (req, res) => {
 })
 
 app.get('/product', async (req, res) => {
+    // sql injection attack example
+    //http://localhost:3000/product?product_id=1; delete from product_images; - try it :)
+    // SELECT * from products where id = 1; delete from product_images;
     const productId = req.query.product_id
+
+    // variable interpolation - unsafe
     const getProductDetailsQueryDangeroues = `select products.*, product_images.image_url
         from products left join product_images
         on products.id = product_images.product_id
         where products.id = ${productId};`
 
+    // parametrized query - safe
     const getProductDetailsQueryWithPlaceholdersSafe = `select products.*, product_images.image_url
         from products left join product_images
         on products.id = product_images.product_id
@@ -95,23 +101,4 @@ app.get('/blog', (req, res) => {
 
 app.get('/about', (req, res) => {
     res.render('about', { title: 'About' })
-})
-
-app.get('/search', async (req, res) => {
-    const searchTerm = req.query.searchTerm
-    const searchProductsQuery = `SELECT * from products where id = ${searchTerm};`;
-    console.log('Search term is:', searchTerm)
-    res.render('about', { title: 'Search Test' })
-    try {
-        const [productsResults, fields] = await db.query(searchProductsQuery)
-        console.log(productsResults)
-    } catch (error) {
-        console.log(error)
-    }
-
-    // sql injection attack example
-    //http://localhost:3000/product?product_id=1; delete from product_images;
-
-
-    // SELECT * from products where id = 1; delete from product_images;
 })
