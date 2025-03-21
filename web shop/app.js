@@ -13,7 +13,8 @@ const db = await mysql.createConnection({
     host: 'localhost',
     user: 'root',
     database: 'webshop',
-    password: 'password'
+    password: 'password',
+    multipleStatements: true
 });
 
 app.set('view engine', 'ejs')
@@ -25,7 +26,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.get('/', async (req, res) => {
     const page = parseInt(req.query.page) || 1
-    const productId = req.query.productId || 1;
+    const productId = Number.isNaN(parseInt(req.query.productId)) ? 1 : parseInt(req.query.productId)
     const offset = (page - 1) * appConstants.productsPerPage
     const getProductsQuery = `select * from products limit ${offset}, ${appConstants.productsPerPage}`
     const getProductsCountQuery = 'select count(*) as count from products'
@@ -45,13 +46,19 @@ app.get('/', async (req, res) => {
 
 app.get('/product', async (req, res) => {
     const productId = req.query.product_id
-    const getProductDetailsQuery = `select products.*, product_images.image_url
+    const getProductDetailsQueryDangeroues = `select products.*, product_images.image_url
         from products left join product_images
         on products.id = product_images.product_id
         where products.id = ${productId};`
+
+    const getProductDetailsQueryWithPlaceholdersSafe = `select products.*, product_images.image_url
+        from products left join product_images
+        on products.id = product_images.product_id
+        where products.id = ?;`
+
     try {
-        const [productDetailsResult, fields] = await db.query(getProductDetailsQuery)
-        // console.log('Product details:', productDetailsResult)
+        // const [productDetailsResult, fields] = await db.query(getProductDetailsQuery)
+        const [productDetailsResult, fields] = await db.query(getProductDetailsQueryWithPlaceholdersSafe, [productId])
         let product = null
         productDetailsResult.forEach((row) => {
             if (product === null) {
@@ -71,10 +78,10 @@ app.get('/product', async (req, res) => {
             product.images.push(row.image_url)
         })
         if (product !== null) {
-            console.log(`product with images, ${product.images}`)
+            console.log(`product with images:`, product)
             res.render('product details', { title: product.productName, productDetails: product })
         } else {
-            // to do implement product doesnt exit page
+            // to do implement product doesn't exist page
         }
 
     } catch (error) {
@@ -90,16 +97,21 @@ app.get('/about', (req, res) => {
     res.render('about', { title: 'About' })
 })
 
-// app.get('/search', async (req, res) => {
-//     const searchTerm = req.query.searchTerm
-//     const searchProductsQuery = `SELECT * from products where id = ${searchTerm};`;
-//     console.log('Search term is:', searchTerm)
-//     res.render('about', { title: 'Search Test' })
-//     try {
-//         const [productsResults, fields] = await db.query(searchProductsQuery)
-//         console.log(productsResults)
-//     } catch (error) {
-//         console.log(error)
-//     }
-// SELECT * from products where id = 1; delete from product_images;
-// })
+app.get('/search', async (req, res) => {
+    const searchTerm = req.query.searchTerm
+    const searchProductsQuery = `SELECT * from products where id = ${searchTerm};`;
+    console.log('Search term is:', searchTerm)
+    res.render('about', { title: 'Search Test' })
+    try {
+        const [productsResults, fields] = await db.query(searchProductsQuery)
+        console.log(productsResults)
+    } catch (error) {
+        console.log(error)
+    }
+
+    // sql injection attack example
+    //http://localhost:3000/product?product_id=1; delete from product_images;
+
+
+    // SELECT * from products where id = 1; delete from product_images;
+})

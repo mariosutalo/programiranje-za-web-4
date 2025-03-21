@@ -6,3 +6,7 @@ optional values in ejs templates:https://www.solarwinter.net/ejs-and-optional-va
 
 nodemon alternativa:
 node --inspect --watch-path=./ ./app.js
+
+database sql injection:
+https://planetscale.com/blog/how-to-prevent-sql-injection-attacks-in-node-js
+https://www.programmerinterview.com/database-sql/example-of-prepared-statements-and-sql-injection-prevention/
