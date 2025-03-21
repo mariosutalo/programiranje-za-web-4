@@ -65,7 +65,7 @@ app.get('/product', async (req, res) => {
                     likes: row.likes,
                     warranty: row.warranty,
                     description: row.description,
-                    images: [] 
+                    images: []
                 }
             }
             product.images.push(row.image_url)
@@ -89,3 +89,17 @@ app.get('/blog', (req, res) => {
 app.get('/about', (req, res) => {
     res.render('about', { title: 'About' })
 })
+
+// app.get('/search', async (req, res) => {
+//     const searchTerm = req.query.searchTerm
+//     const searchProductsQuery = `SELECT * from products where id = ${searchTerm};`;
+//     console.log('Search term is:', searchTerm)
+//     res.render('about', { title: 'Search Test' })
+//     try {
+//         const [productsResults, fields] = await db.query(searchProductsQuery)
+//         console.log(productsResults)
+//     } catch (error) {
+//         console.log(error)
+//     }
+// SELECT * from products where id = 1; delete from product_images;
+// })
