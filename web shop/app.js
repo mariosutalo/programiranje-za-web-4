@@ -5,6 +5,8 @@ import homeRouter from './routes/homeRoutes.js'
 import productRouter from './routes/productRoutes.js'
 import aboutRouter from './routes/aboutRoute.js'
 import blogRouter from './routes/blogRoutes.js'
+import cookieParser from 'cookie-parser'
+import userRoutes from './routes/userRoutes.js'
 
 const app = express()
 
@@ -25,6 +27,8 @@ app.set('view engine', 'ejs')
 
 app.listen(3000)
 
+app.use(cookieParser())
+
 app.use(express.static('public'))
 
 app.use((req, res, next) => {
@@ -34,6 +38,8 @@ app.use((req, res, next) => {
 app.use(express.urlencoded({ extended: true }));
 
 app.use('/', homeRouter)
+
+app.use('/user', userRoutes)
 
 app.use('/product', productRouter)
 
