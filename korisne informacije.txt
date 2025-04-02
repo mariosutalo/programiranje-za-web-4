@@ -10,3 +10,8 @@ node --inspect --watch-path=./ ./app.js
 database sql injection:
 https://planetscale.com/blog/how-to-prevent-sql-injection-attacks-in-node-js
 https://www.programmerinterview.com/database-sql/example-of-prepared-statements-and-sql-injection-prevention/
+
+- git commands
+
+delete local and remote branch named promises-version
+git branch -d promises-version ; git push origin --delete promises-version 
