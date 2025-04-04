@@ -11,12 +11,12 @@ router.get('/login', (req, res) => {
     res.send('cookies has been set')
 })
 
-router.get('/sensitivedata', (req, res) => {
-    const user = req.cookies.user
-    if (user) {
-        res.send('user login')
+router.get('/profile', (req, res) => {
+    const sessionId = req.cookies.sessionId
+    if (sessionId) {
+        res.send('user profile details')
     } else {
-        res.send(' no cookie found')
+        res.send('access denied')
     }
 })
 
