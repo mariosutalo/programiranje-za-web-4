@@ -7,6 +7,7 @@ import aboutRouter from './routes/aboutRoute.js'
 import blogRouter from './routes/blogRoutes.js'
 import cookieParser from 'cookie-parser'
 import userRoutes from './routes/userRoutes.js'
+import { v4 as uuidv4 } from 'uuid'
 
 const app = express()
 
@@ -29,8 +30,22 @@ app.listen(3000)
 
 app.use(cookieParser())
 
+app.use((req, res, next) => {
+    let sessionId = req.cookies.sessionId
+    if(!sessionId) {
+        sessionId = uuidv4()
+        res.cookie('sessionId', sessionId, {
+            maxAge: 365 * 24 * 60 * 60 *1000,
+            httpOnly: true,
+            sameSite: 'strict'
+        })
+    }
+    next()
+})
+
 app.use(express.static('public'))
 
+// middleware
 app.use((req, res, next) => {
     res.app.locals.pageStyles = []
     next()
