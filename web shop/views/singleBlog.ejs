@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<% locals.pageStyles.push('/styles/singleBlog.css') %>
+    <% locals.pageStyles.push('/styles/header.css') %>
+        <%- include('./partials/head.ejs') %>
+
+            <body>
+                <%- include('./partials/header.ejs') %>
+                    <main>
+                        <div class="container">
+                            <h1 class="post-title">Exploring the Wonders of Space</h1>
+                            <p class="post-meta">By Alice | April 11, 2025</p>
+                            <div class="post-content">
+                                <p>Space is vast and filled with wonders. From distant galaxies to nearby planets, each
+                                    celestial body tells a unique story.</p>
+                                <p>In this post, we dive into the mesmerizing world of astronomy — from the history of
+                                    stargazing to modern-day space exploration. You'll discover fascinating facts about
+                                    black holes, the lifecycle of stars, and the possibility of life beyond Earth.</p>
+                                <p>We also take a closer look at recent missions by NASA and private space companies
+                                    that are changing how we explore the final frontier. Whether you're a casual
+                                    stargazer or a future astronaut, the universe has something for everyone to marvel
+                                    at.</p>
+                                <p>Stay curious, and keep looking up!</p>
+                            </div>
+                        </div>
+                    </main>
+                    <%- include('./partials/footer.ejs') %>
+            </body>

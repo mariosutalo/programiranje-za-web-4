@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<% locals.pageStyles.push('/styles/blogs.css') %>
+<% locals.pageStyles.push('/styles/header.css') %>
+<%- include('./partials/head.ejs') %>
+
+  <body>
+    <%- include('./partials/header.ejs') %>
+      <main>
+        
+<div class="blog-list">
+  <div class="blog-post">
+    <div class="blog-content">
+      <a class="blog-title-link" href="#">Exploring the Wonders of Space</a>
+      <p class="blog-excerpt">A quick look at the beauty and mystery of the universe.</p>
+      <p class="blog-author">By Alice</p>
+    </div>
+  </div>
+
+  <div class="blog-post">
+    <div class="blog-content">
+        <a class="blog-title-link" href="#">Top 10 JavaScript Tricks You Should Know</a>
+      <p class="blog-excerpt">Handy tricks to write cleaner and faster JavaScript.</p>
+      <p class="blog-author">By Bob</p>
+    </div>
+  </div>
+</div>
+      </main>
+      <%- include('./partials/footer.ejs') %>
+  </body>
