@@ -1,0 +1,10 @@
+1. uradit import blogs.sql skripte u bazu
+2. u blog routeru će biti dva endpointa:
+    - root endpoint za sve blogove:
+        - povući sve blogove iz baze i prikazati na stranici (blog.ejs) kao na slici
+    - blogDetails za prikaz pojedinačnog bloga
+        - na osnovu get parametra blogId povući detalje za blog iz baze  
+         i prikazati na stranici (blogDetails.ejs)
+    - napraviti css za stranice blog.ejs i blogDetails.ejs
+        blog.css i blogDetails.css
+    - sami odredite što će biti u css-u
