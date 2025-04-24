@@ -44,7 +44,7 @@ router.get('/', async (req, res) => {
             product.images.push(row.image_url)
         })
         if (product !== null) {
-            console.log(`product with images:`, product)
+            // console.log(`product with images:`, product)
             res.render('product details', { title: product.productName, productDetails: product })
         } else {
             // to do implement product doesn't exist page
@@ -53,6 +53,12 @@ router.get('/', async (req, res) => {
     } catch (error) {
         console.log('Error fetching product details', error)
     }
+})
+
+router.post('/add-to-cart', (req, res) => {
+    const productData = req.body
+    console.log('request body', productData)
+    res.redirect('back')
 })
 
 export default router

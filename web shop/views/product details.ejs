@@ -72,17 +72,17 @@
           <% } %>
 
           <div class="cart-quantity-label-div">
-            <div class="add-to-cart-div">
-              <button class="decrease-quantity-btn">-</button>
-              <span class="product-quantity-span">2</span>
-              <button class="increase-quantity-btn">+</button>
-            </div>
-            <span class="quantity-label-span">Količina</span>
+            <form action="/product/add-to-cart" method="post">
+              <input type="number" name="quantity" id="quantity" min="1" value="1">
+              <input type="hidden" name="id" value="<%= locals.productDetails.id  %>">
+              <label class="quantity-label-span" for="quantity">Količina</label>
+              <button type="submit" class="add-to-cart-btn" href="#">
+                <img src="assets/cart icon white.png" alt="" class="add-to-cart-img">
+                <span>U košaricu</span>
+              </button>
+            </form>
           </div>
-          <a class="add-to-cart-btn" href="#">
-            <img src="assets/cart icon white.png" alt="" class="add-to-cart-img">
-            <span>U košaricu</span>
-          </a>
+
         </div>
       </div>
       <!-- <img class="product-img" src="assets/product images/<%= locals.productDetails.image  %>" alt=""> -->
