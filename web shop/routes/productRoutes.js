@@ -56,9 +56,12 @@ router.get('/', async (req, res) => {
 })
 
 router.post('/add-to-cart', (req, res) => {
+    res.render('error', {title: 'Error on page'})
+    return
+    
     const productData = req.body
     console.log('request body', productData)
-    res.redirect('back')
+    res.redirect(req.get('Referrer') || '/')
 })
 
 export default router
