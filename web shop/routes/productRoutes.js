@@ -1,8 +1,13 @@
 import express from 'express'
 import { db } from '../app.js'
 import productSpecsToArray from '../util/util.js'
-
+import { z } from 'zod'
 const router = express.Router()
+
+const addToCartSchema = z.object({
+    id: z.number().min(0),
+    quantity: z.number().gt(0)
+})
 
 router.get('/', async (req, res) => {
     // sql injection attack example
@@ -56,11 +61,21 @@ router.get('/', async (req, res) => {
 })
 
 router.post('/add-to-cart', (req, res) => {
-    res.render('error', {title: 'Error on page'})
-    return
-    
+    // res.render('error', {title: 'Error on page'})
+    // return
+
     const productData = req.body
-    console.log('request body', productData)
+    const productDataTransformed = {
+        id: Number(productData.id),
+        quantity: Number(productData.quantity)
+    }
+    const validationResult = addToCartSchema.safeParse(productDataTransformed)
+    if (!validationResult.success) {
+        res.render('error', { title: 'Error on page' })
+        return
+    }
+    const addToCartData = validationResult.data
+    console.log('Cart item data:', addToCartData)
     res.redirect(req.get('Referrer') || '/')
 })
 
