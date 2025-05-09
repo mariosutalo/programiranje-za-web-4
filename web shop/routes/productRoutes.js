@@ -60,7 +60,7 @@ router.get('/', async (req, res) => {
     }
 })
 
-router.post('/add-to-cart', (req, res) => {
+router.post('/add-to-cart', async (req, res) => {
     // res.render('error', {title: 'Error on page'})
     // return
 
@@ -76,6 +76,14 @@ router.post('/add-to-cart', (req, res) => {
     }
     const addToCartData = validationResult.data
     console.log('Cart item data:', addToCartData)
+
+    const addToCartQuery = `insert into cart_items (product_id, quantity, session_guid) 
+                            values (?, ?, ?)`
+    const checkIfSessionExistsQuery = `SELECT count(*) as count FROM webshop.sessions
+                                        where guid = ?`
+    const sessionId = req.cookies.sessionId
+    const [result, fields] = await db.execute(checkIfSessionExistsQuery, [sessionId])
+    console.log('Session count db result:', result)
     res.redirect(req.get('Referrer') || '/')
 })
 
