@@ -1,0 +1,15 @@
+1. Uraditi import skripte testemonials.sql u webshop bazu
+2. U header site-a dodati novi link Testemonials koji vodi na /testemonials url
+3. Napraviti testemonialsRoutes.js u mapi routes
+4. Dodati dva endpointa u testemonialsRoutes.js:
+    - '/' - za prikaz svih recenzija (testemonials)
+    - '/testemonial' - za prikaz pojedinačne recenzije
+5. Dodati testemonials router u app.js (pogledati kako se router iz blogRoutes.js dodaje u app.js)
+6. Dodati u styles mapu dvije css datoteke: testemonials.css i singleTestemonial.css
+    - u nju dodati stilove po želji, ne treba ih biti puno, samo osnovni stilovi
+7. Napraviti dvije ejs datoteke:
+    - testemonials.ejs prikazuje sve rezencije u listi, svaka stavka u listi treba imati:
+    title, author. Staviti da se koristi testemonials.css za stilove. Klikom na recenziju se
+    otvara rezenzija.
+    - singleTestemonial.ejs prikazuje pojedinačni testemonial na stranici. Staviti da se koristi stil
+    singleTestemonial.css. Potrebno je prikazati: title, author, content i oblikovati izgled stranice po želji.
