@@ -75,15 +75,22 @@ router.post('/add-to-cart', async (req, res) => {
         return
     }
     const addToCartData = validationResult.data
-    console.log('Cart item data:', addToCartData)
-
     const addToCartQuery = `insert into cart_items (product_id, quantity, session_guid) 
                             values (?, ?, ?)`
     const checkIfSessionExistsQuery = `SELECT count(*) as count FROM webshop.sessions
                                         where guid = ?`
     const sessionId = req.cookies.sessionId
     const [result, fields] = await db.execute(checkIfSessionExistsQuery, [sessionId])
-    console.log('Session count db result:', result)
+    const guidCount = result[0].count
+    if (guidCount === 0) {
+        const insertGuidInSessionQuery = `insert into sessions(guid)
+                                      values (?)`
+        const [insertResult, insertFields] = await db.execute(insertGuidInSessionQuery, [sessionId])
+        console.log('Insert guid result: ', insertResult)
+        const affectedRowsCount = insertResult.affectedRows
+        console.log('Affected rows: ', affectedRowsCount)
+    }
+    
     res.redirect(req.get('Referrer') || '/')
 })
 
