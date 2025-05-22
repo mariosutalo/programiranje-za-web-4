@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<% locals.pageStyles.push('/styles/blogs.css') %>
+  <% locals.pageStyles.push('/styles/header.css') %>
+    <%- include('./partials/head.ejs') %>
+
+      <body>
+        <%- include('./partials/header.ejs') %>
+          <main>
+            <div class="blog-list">
+              <% locals.blogs.forEach(blog=> { %>
+                <div class="blog-post">
+                  <div class="blog-content">
+                    <a class="blog-title-link" href="<%= `/blog/readBlog?blogId=${blog.id}`%>">
+                      <%= blog.title  %>
+                    </a>
+                    <p class="blog-excerpt">
+                      <%= blog.excerpt %>
+                    </p>
+                    <p class="blog-author">
+                      <%= blog.author  %>
+                    </p>
+                  </div>
+                </div>
+                <% }) %>
+            </div>
+          </main>
+          <%- include('./partials/footer.ejs') %>
+      </body>

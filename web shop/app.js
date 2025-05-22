@@ -1,9 +1,13 @@
 import express from 'express'
 import mysql from 'mysql2/promise'
-import productRoutes from './routes/productRoutes.js'
-import homeRoute from './routes/homeRoute.js'
-import blogRoutes from './routes/blogRoutes.js'
-import aboutRoutes from './routes/aboutRoutes.js'
+import productSpecsToArray from './util/util.js'
+import homeRouter from './routes/homeRoutes.js'
+import productRouter from './routes/productRoutes.js'
+import aboutRouter from './routes/aboutRoute.js'
+import blogRouter from './routes/blogRoutes.js'
+import cookieParser from 'cookie-parser'
+import userRoutes from './routes/userRoutes.js'
+import { v4 as uuidv4 } from 'uuid'
 
 const app = express()
 
@@ -11,7 +15,8 @@ export const appConstants = {
     productsPerPage: 5
 }
 
-const db = await mysql.createConnection({
+// Create the connection to database
+export const db = await mysql.createConnection({
     host: 'localhost',
     user: 'root',
     database: 'webshop',
@@ -19,23 +24,40 @@ const db = await mysql.createConnection({
     multipleStatements: true
 });
 
-app.locals.db = db
-
 app.set('view engine', 'ejs')
 
 app.listen(3000)
 
+app.use(cookieParser())
+
 app.use((req, res, next) => {
-    res.locals.pageStyles = []
+    let sessionId = req.cookies.sessionId
+    if(!sessionId) {
+        sessionId = uuidv4()
+        res.cookie('sessionId', sessionId, {
+            maxAge: 365 * 24 * 60 * 60 *1000,
+            httpOnly: true,
+            sameSite: 'strict'
+        })
+    }
     next()
 })
+
 app.use(express.static('public'))
+
+// middleware
+app.use((req, res, next) => {
+    res.app.locals.pageStyles = []
+    next()
+})
 app.use(express.urlencoded({ extended: true }));
 
-app.use('/', homeRoute)
+app.use('/', homeRouter)
 
-app.use('/product', productRoutes)
+app.use('/user', userRoutes)
 
-app.use('/blog', blogRoutes)
+app.use('/product', productRouter)
 
-app.use('/about', aboutRoutes)
+app.use('/blog', blogRouter)
+
+app.use('/about', aboutRouter)

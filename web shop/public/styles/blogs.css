@@ -1,0 +1,30 @@
+.blog-list {
+    max-width: 800px;
+    margin: auto;
+  }
+  .blog-post {
+    display: flex;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+
+  .blog-content {
+    padding: 15px;
+  }
+  .blog-title-link {
+    font-size: 20px;
+    margin: 0 0 10px;
+    color: #981a1a;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .blog-excerpt {
+    margin-bottom: 10px;
+    color: #555;
+  }
+  .blog-author {
+    font-size: 14px;
+    color: #888;
+  }

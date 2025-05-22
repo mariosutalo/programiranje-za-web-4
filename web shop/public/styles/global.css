@@ -1,0 +1,38 @@
+/* css varijable */
+:root {
+    --primary: #be3279;
+    --text: rgb(18, 18, 18);
+    --18px: calc(18rem/16);
+    --24px: calc(24rem/16);
+    --20px: calc(20rem/16);
+    --16px: calc(16rem/16);
+    --32px: calc(32rem/16);
+    --10px: calc(10rem/16);
+    --primary-font: "Open Sans";
+    --color1: #009ee0;
+    --14px: calc(14rem/16);
+    --color2: #f00;
+    --color3: #89ba19;
+    --28px: calc(28rem/16);
+}
+
+footer {
+    border-top: 1px gray solid;
+}
+
+body {
+    margin: 0;
+}
+
+footer p {
+    text-align: center;
+}
+
+.footer-div {
+    padding: 20px 40px;
+}
+
+
+  
+
+

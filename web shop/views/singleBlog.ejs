@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<% locals.pageStyles.push('/styles/singleBlog.css') %>
+    <% locals.pageStyles.push('/styles/header.css') %>
+        <%- include('./partials/head.ejs') %>
+
+            <body>
+                <%- include('./partials/header.ejs') %>
+                    <main>
+                        <div class="container">
+                            <h1 class="post-title">
+                                <%= locals.blog.title %>
+                            </h1>
+                            <p class="post-meta">
+                                <%= `By ${locals.blog.author} | ${locals.blog.created_at}` %>
+                            </p>
+                            <div class="post-content">
+                                <%= locals.blog.content %>
+                            </div>
+                        </div>
+                    </main>
+                    <%- include('./partials/footer.ejs') %>
+            </body>
