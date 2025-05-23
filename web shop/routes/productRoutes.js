@@ -49,7 +49,6 @@ router.get('/', async (req, res) => {
             product.images.push(row.image_url)
         })
         if (product !== null) {
-            // console.log(`product with images:`, product)
             res.render('product details', { title: product.productName, productDetails: product })
         } else {
             // to do implement product doesn't exist page
@@ -75,8 +74,6 @@ router.post('/add-to-cart', async (req, res) => {
         return
     }
     const addToCartData = validationResult.data
-    const addToCartQuery = `insert into cart_items (product_id, quantity, session_guid) 
-                            values (?, ?, ?)`
     const checkIfSessionExistsQuery = `SELECT count(*) as count FROM webshop.sessions
                                         where guid = ?`
     const sessionId = req.cookies.sessionId
@@ -86,11 +83,15 @@ router.post('/add-to-cart', async (req, res) => {
         const insertGuidInSessionQuery = `insert into sessions(guid)
                                       values (?)`
         const [insertResult, insertFields] = await db.execute(insertGuidInSessionQuery, [sessionId])
-        console.log('Insert guid result: ', insertResult)
         const affectedRowsCount = insertResult.affectedRows
-        console.log('Affected rows: ', affectedRowsCount)
     }
-    
+    const addToCartQuery = `insert into cart_items (product_id, quantity, session_guid) 
+                            values (?, ?, ?)`
+    const [addToCartResult, addToCartFields] = await db.execute(addToCartQuery, [addToCartData.id.toString(), addToCartData.quantity.toString(), sessionId])
+    if (addToCartResult.affectedRows === 0) {
+        res.render('error', { title: 'Error on page' })
+        return
+    }
     res.redirect(req.get('Referrer') || '/')
 })
 

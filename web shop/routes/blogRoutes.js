@@ -13,7 +13,6 @@ router.get('/readBlog', async (req, res) => {
     const blogId = req.query.blogId
     const selectSingleBlogQuery = 'select * from blogs where id = ?'
     const [results, fields] = await db.execute(selectSingleBlogQuery, [blogId.toString()])
-    console.log('Query result', results)
     res.render('singleBlog', { title: `${blogId}`, blog: results[0] })
 })
 

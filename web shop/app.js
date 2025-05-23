@@ -32,10 +32,10 @@ app.use(cookieParser())
 
 app.use((req, res, next) => {
     let sessionId = req.cookies.sessionId
-    if(!sessionId) {
+    if (!sessionId) {
         sessionId = uuidv4()
         res.cookie('sessionId', sessionId, {
-            maxAge: 365 * 24 * 60 * 60 *1000,
+            maxAge: 365 * 24 * 60 * 60 * 1000,
             httpOnly: true,
             sameSite: 'strict'
         })
@@ -44,6 +44,19 @@ app.use((req, res, next) => {
 })
 
 app.use(express.static('public'))
+
+app.use(async (req, res, next) => {
+    const cartItemCountQuery = `select count(*) as cart_items_count
+                                from cart_items
+                                where session_guid = ?`
+    const [cartCountResult, cartItemFields] = await db.execute(cartItemCountQuery, [req.cookies.sessionId])
+    console.log('Cart items count', cartCountResult)
+    const cartItemsCount = cartCountResult[0].cart_items_count
+    app.locals.cartItemsCount = cartItemsCount
+    next()
+})
+
+
 
 // middleware
 app.use((req, res, next) => {
