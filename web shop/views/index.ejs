@@ -1,12 +1,20 @@
 <!DOCTYPE html>
 <% locals.pageStyles.push('/styles/home.css') %>
-<% locals.pageStyles.push('/styles/header.css') %>
-<%- include('./partials/head.ejs') %>
-  <body>
-    <%- include('./partials/header.ejs') %>
-      <div class="page-div">
-        <main>
-          <!-- <div class="filter-products-div">
+  <% locals.pageStyles.push('/styles/header.css') %>
+    <%- include('./partials/head.ejs') %>
+
+      <body>
+        <script>
+          window.addEventListener('pageshow', (e) => {
+            if (e.persisted) {
+              window.location.reload()
+            }
+          })
+        </script>
+        <%- include('./partials/header.ejs') %>
+          <div class="page-div">
+            <main>
+              <!-- <div class="filter-products-div">
             <form action="filter_products" method="get">
               <label class="container" for="gaming">Gaming
                 <input type="checkbox" id="gaming" name="category" value="gaming">
@@ -18,63 +26,66 @@
               </label>
             </form>
           </div> -->
-          <div class="products-div">
-            <div class="sort-products-div">
-              <form action="sort_products" class="sort-form">
-                <label for="sort-options">Sort By</label>
-                <select name="sort_by" id="sort-options">
-                  <option value="name_asc">Name A - Z</option>
-                  <option value="name_desc">Name A - Z</option>
-                  <option value="price_asc">Lowest Price</option>
-                  <option value="price_desc">Highest Price</option>
-                  <option value="newest">Newest</option>
-                </select>
-              </form>
-            </div>
-            <div class="products-grid-div">
-              <% if(locals.error) {%>
-                <h3>DB Error!!!</h3>
-                <% } else if (locals.products.length===0) { %>
-                  <h2>No products</h2>
-                  <% } else { locals.products.forEach(product=> { %>
-                    <div class="grid-product-card-div">
-                      <img class="grid-product-image" src="<%= `assets/product images/${product.image_url}` %>" alt="">
-                      <a class="show-product-details-link" href="<%= `product?product_id=${product.id}` %>">
-                        <%= product.name %>
-                      </a>
-                      <div class="rating-img-span-div">
-                        <img class="product-star-icon" src="assets/star icon.png" alt="">
-                        <span>
-                          <%=`(${product.likes})`%>
-                        </span>
-                      </div>
-                      <ul>
-                        <li>Podnožje: Intel LGA1700</li>
-                        <li>Vrsta memorije: DDR4</li>
-                      </ul>
-                      <h4>
-                        <%=`${product.price} €`%>
-                      </h4>
-                      <div class="price-heart-div">
-                        <span class="product-price-span">
-                          <%=`- ${(product.price * 0.05).toFixed(2)} E-BANK`%>
-                        </span>
-                        <img class="product-heart-icon" src="assets/heart icon.png" alt="">
-                      </div>
-                    </div>
-                    <% }) } %>
-            </div>
-            <div class="pagination-div">
-              <% if (locals.currentPage > 1) { %>
-               <a href="?page=<%= locals.currentPage - 1 %>">Previous</a>
-              <% } %>
-              <span><%= locals.currentPage %> of <%= locals.totalPages %></span>
-              <% if (locals.currentPage < locals.totalPages) { %>
-                <a href="?page=<%= currentPage + 1 %>">Next</a>
-               <% } %>
-            </div>
+              <div class="products-div">
+                <div class="sort-products-div">
+                  <form action="sort_products" class="sort-form">
+                    <label for="sort-options">Sort By</label>
+                    <select name="sort_by" id="sort-options">
+                      <option value="name_asc">Name A - Z</option>
+                      <option value="name_desc">Name A - Z</option>
+                      <option value="price_asc">Lowest Price</option>
+                      <option value="price_desc">Highest Price</option>
+                      <option value="newest">Newest</option>
+                    </select>
+                  </form>
+                </div>
+                <div class="products-grid-div">
+                  <% if(locals.error) {%>
+                    <h3>DB Error!!!</h3>
+                    <% } else if (locals.products.length===0) { %>
+                      <h2>No products</h2>
+                      <% } else { locals.products.forEach(product=> { %>
+                        <div class="grid-product-card-div">
+                          <img class="grid-product-image" src="<%= `assets/product images/${product.image_url}` %>"
+                            alt="">
+                          <a class="show-product-details-link" href="<%= `product?product_id=${product.id}` %>">
+                            <%= product.name %>
+                          </a>
+                          <div class="rating-img-span-div">
+                            <img class="product-star-icon" src="assets/star icon.png" alt="">
+                            <span>
+                              <%=`(${product.likes})`%>
+                            </span>
+                          </div>
+                          <ul>
+                            <li>Podnožje: Intel LGA1700</li>
+                            <li>Vrsta memorije: DDR4</li>
+                          </ul>
+                          <h4>
+                            <%=`${product.price} €`%>
+                          </h4>
+                          <div class="price-heart-div">
+                            <span class="product-price-span">
+                              <%=`- ${(product.price * 0.05).toFixed(2)} E-BANK`%>
+                            </span>
+                            <img class="product-heart-icon" src="assets/heart icon.png" alt="">
+                          </div>
+                        </div>
+                        <% }) } %>
+                </div>
+                <div class="pagination-div">
+                  <% if (locals.currentPage> 1) { %>
+                    <a href="?page=<%= locals.currentPage - 1 %>">Previous</a>
+                    <% } %>
+                      <span>
+                        <%= locals.currentPage %> of <%= locals.totalPages %>
+                      </span>
+                      <% if (locals.currentPage < locals.totalPages) { %>
+                        <a href="?page=<%= currentPage + 1 %>">Next</a>
+                        <% } %>
+                </div>
+              </div>
+            </main>
           </div>
-        </main>
-      </div>
-      <%- include('./partials/footer.ejs') %>
-  </body>
+          <%- include('./partials/footer.ejs') %>
+      </body>
