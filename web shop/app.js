@@ -8,6 +8,7 @@ import blogRouter from './routes/blogRoutes.js'
 import cookieParser from 'cookie-parser'
 import userRoutes from './routes/userRoutes.js'
 import { v4 as uuidv4 } from 'uuid'
+import cartRouter from './routes/cartRoute.js'
 
 const app = express()
 
@@ -46,11 +47,15 @@ app.use((req, res, next) => {
 app.use(express.static('public'))
 
 app.use(async (req, res, next) => {
+    if (!req.cookies.sessionId) {
+        app.locals.cartItemsCount = 0
+        next()
+        return
+    }
     const cartItemCountQuery = `select count(*) as cart_items_count
                                 from cart_items
                                 where session_guid = ?`
     const [cartCountResult, cartItemFields] = await db.execute(cartItemCountQuery, [req.cookies.sessionId])
-    console.log('Cart items count', cartCountResult)
     const cartItemsCount = cartCountResult[0].cart_items_count
     app.locals.cartItemsCount = cartItemsCount
     next()
@@ -74,3 +79,4 @@ app.use('/product', productRouter)
 app.use('/blog', blogRouter)
 
 app.use('/about', aboutRouter)
+app.use('/cart', cartRouter)
