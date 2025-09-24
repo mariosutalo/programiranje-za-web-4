@@ -1,7 +1,0 @@
-Otići na github.com/mariosutalo/programiranje-za-web-3 cookies branch
-Pogledati kako je implementiran kod na slijedećim datotekama:
-/routes/blogRoutes.js - oba endpointa
-views/blogs.ejs - template za prikaz svih blogova
-views/singleBlog.ejs - template za prikaz pojedinačnog blogova
-styles/blogs.css - css za sve blogove
-styles/singleBlog.css - css za pojedinačni blog
