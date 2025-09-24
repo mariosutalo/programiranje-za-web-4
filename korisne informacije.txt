@@ -4,7 +4,7 @@ absolute vs relative urls: https://stackoverflow.com/questions/2005079/absolute-
 optional values in ejs templates:https://www.solarwinter.net/ejs-and-optional-values/
 
 
-nodemon alternativa:
+nodemon alternativa: 
 node --inspect --watch-path=./ ./app.js
 
 database sql injection:
