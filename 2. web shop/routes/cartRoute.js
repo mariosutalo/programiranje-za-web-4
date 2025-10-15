@@ -14,24 +14,25 @@ router.get('/', async (req, res) => {
                             where c.session_guid = ?`
     try {
         const [results, fields] = await db.execute(cartProductsQuery, [sessionId])
-        console.log('Cart content:', results)
-        let cartProducts = []
+        let cartItems = []
         results.forEach((row) => {
-            const item = cartProducts.filter((cartItem => cartItem.id === row.id))
-            if (item && item.length > 0) {
-
+            const item = cartItems.find((cartItem => cartItem.id === row.id))
+            if (item) {
+                item.quantity = item.quantity + Number(row.quantity)
+                item.productTotal = item.price * item.quantity
             } else {
-                const newProductItem = {
+                const newCartItem = {
                     id: row.id,
                     name: row.name,
-                    price: row.price,
-                    quantity: row.quantity,
+                    price: Number(row.price),
+                    quantity: Number(row.quantity),
                     imageUrl: row.image_url,
                     productTotal: row.price * row.quantity
                 }
+                cartItems.push(newCartItem)
             }
         })
-        res.render('cart', { title: 'Cart' })
+        res.render('cart', { title: 'Cart', cartItems: cartItems})
     } catch (error) {
         res.render('error', { title: 'Error' })
     }

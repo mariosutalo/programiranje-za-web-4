@@ -1,25 +1,34 @@
 <!DOCTYPE html>
 <% locals.pageStyles.push('/styles/header.css') %>
-<% locals.pageStyles.push('/styles/cart.css') %>
-<%- include('./partials/head.ejs') %>
+  <% locals.pageStyles.push('/styles/cart.css') %>
+    <%- include('./partials/head.ejs') %>
 
-<body>
-  <%- include('./partials/header.ejs') %>
-  <div class="container_div">
-    <div class="cart_item_div">
-      <img class="product_image" src="images/inno3d-geforce-gt-710-2gb-sddr3-lp-97765-ino-n710-1sdv-e3bx_1.jpg" alt="">
-      <div class="item_description_div">
-        <p>Grafička Inno3D GeForce GT710 LP, 2GB SDDR3</p>
-        <p>Šifra artikla: INO-N710-1SDV-E3BX</p>
-        <a class="delete_item_link" href="#">
-          <img class="delete_image" src="images/delete icon.png" alt="">
-          <span>Izbriši</span>
-        </a>
-      </div>
-      <span class="price_span">34,02€</span>
-    </div>
-    <p class="total_price_p">Ukupno <span>68,04€</span></p>
-    <a class="add_address_link" href="#">Adresa isporuke</a>
-  </div>
-  <%- include('./partials/footer.ejs') %>
-</body>
+      <body>
+        <%- include('./partials/header.ejs') %>
+          <div class="container_div">
+            <div>
+              <% if(locals.cartItems.length===0){ %>
+                <p>Cart is empty</p>
+                <% } else { locals.cartItems.forEach(item=> { %>
+                  <div class="cart_item_div">
+                    <img class="product_image" src="images/inno3d-geforce-gt-710-2gb-sddr3-lp-97765-ino-n710-1sdv-e3bx_1.jpg" alt="">
+                    <div class="item_description_div">
+                      <p><%= item.name  %></p>
+                      <p>Šifra artikla: <%= item.id  %></p>
+                      <a class="delete_item_link" href="#">
+                        <img class="delete_image" src="images/delete icon.png" alt="">
+                        <span>Izbriši</span>
+                      </a>
+                    </div>
+                    <span>Qauntity: <%= item.quantity %></span>
+                    <span class="price_span"><%= item.price %> €</span>
+                    <span>Total: <%= item.productTotal %> €</span>
+                  </div>
+                  <% }) %>
+                    <% } %>
+            </div>
+            <p class="total_price_p">Ukupno <span>68,04€</span></p>
+            <a class="add_address_link" href="#">Adresa isporuke</a>
+          </div>
+          <%- include('./partials/footer.ejs') %>
+      </body>
