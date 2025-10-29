@@ -14,6 +14,7 @@
     --color2: #f00;
     --color3: #89ba19;
     --28px: calc(28rem/16);
+    --btn-radius: 12px;
 }
 
 footer {

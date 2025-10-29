@@ -9,9 +9,9 @@
             <h2 class="your_cart_h2">Your Cart</h2>
             <div class="items_and_checkout_div">
               <div class="items_div">
-                <% if(locals.cartItems.length===0){ %>
+                <% if(locals.cartData.cartItems.length===0){ %>
                   <p>Cart is empty</p>
-                  <% } else { locals.cartItems.forEach(item=> { %>
+                  <% } else { locals.cartData.cartItems.forEach(item=> { %>
                     <div class="cart_item_div">
                       <span class="item_name_span">
                         <%= item.name %>
@@ -31,11 +31,11 @@
               </div>
               <div class="summary_div">
                 <h3>Order Summary</h3>
-                <div>
+                <div class="total_price_div">
                   <span>total</span>
-                  <span>$100</span>
+                  <span><%= locals.cartData.total %> €</span>
                 </div>
-                <button>Proceed to Checkout</button>
+                <button class="checkout_btn">Proceed to Checkout</button>
               </div>
             </div>
           </div>

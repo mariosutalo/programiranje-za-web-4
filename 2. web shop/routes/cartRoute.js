@@ -32,7 +32,12 @@ router.get('/', async (req, res) => {
                 cartItems.push(newCartItem)
             }
         })
-        res.render('cart', { title: 'Cart', cartItems: cartItems})
+        let totalProductsPrice = 0
+        cartItems.forEach((cartItem) => {
+            totalProductsPrice += cartItem.productTotal
+        })
+        const cartData = { total: totalProductsPrice, cartItems: cartItems }
+        res.render('cart', { title: 'Cart', cartData: cartData })
     } catch (error) {
         res.render('error', { title: 'Error' })
     }
