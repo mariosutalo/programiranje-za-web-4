@@ -21,10 +21,13 @@
                         <%= item.price %> €
                       </span>
                       <span>Total: <%= item.productTotal %> €</span>
-                      <a class="delete_item_link" href="#">
-                        <img class="delete_image" src="images/delete icon.png" alt="">
-                        <span>Izbriši</span>
-                      </a>
+                      <form action="/cart" method="post">
+                        <input type="hidden" name="productId" value="<%= item.id %>">
+                        <button type="submit" class="delete_item_link">
+                          <img src="" alt="" class="delete_item_link">
+                          <span>Delete</span>
+                        </button>
+                      </form>
                     </div>
                     <% }) %>
                       <% } %>
@@ -33,7 +36,9 @@
                 <h3>Order Summary</h3>
                 <div class="total_price_div">
                   <span>total</span>
-                  <span><%= locals.cartData.total %> €</span>
+                  <span>
+                    <%= locals.cartData.total %> €
+                  </span>
                 </div>
                 <button class="checkout_btn">Proceed to Checkout</button>
               </div>

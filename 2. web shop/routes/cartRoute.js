@@ -44,4 +44,20 @@ router.get('/', async (req, res) => {
 
 })
 
+router.post('/', async (req, res) => {
+    const productId = Number(req.body.productId)
+    if (isNaN(productId)) {
+        res.render('error', { title: 'Error' })
+    }
+    const deleteCartItemQuery = `delete from cart_items
+    where product_id = ?`
+    try {
+        const [results, fields] = await db.execute(deleteCartItemQuery, [productId])
+        console.log(results)
+    } catch (error) {
+        res.render('error', { title: 'Error' })
+    }
+    res.redirect(req.get('Referrer') || '/')
+})
+
 export default router

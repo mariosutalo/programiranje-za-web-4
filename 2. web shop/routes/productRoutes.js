@@ -60,9 +60,6 @@ router.get('/', async (req, res) => {
 })
 
 router.post('/add-to-cart', async (req, res) => {
-    // res.render('error', {title: 'Error on page'})
-    // return
-
     const productData = req.body
     const productDataTransformed = {
         id: Number(productData.id),
