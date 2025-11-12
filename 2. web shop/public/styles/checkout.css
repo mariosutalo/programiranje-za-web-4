@@ -1,0 +1,19 @@
+.form-container-div {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-container-div>div {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.submit-btn {
+    border: none;
+    background-color: var(--primary);
+    padding: 12px 24px;
+    border-radius: var(--btn-radius);
+    color: white;
+}

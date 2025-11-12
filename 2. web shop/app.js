@@ -9,6 +9,7 @@ import cookieParser from 'cookie-parser'
 import userRoutes from './routes/userRoutes.js'
 import { v4 as uuidv4 } from 'uuid'
 import cartRouter from './routes/cartRoute.js'
+import checkoutRouter from './routes/checkoutRoutes.js'
 
 const app = express()
 
@@ -71,12 +72,9 @@ app.use((req, res, next) => {
 app.use(express.urlencoded({ extended: true }));
 
 app.use('/', homeRouter)
-
 app.use('/user', userRoutes)
-
 app.use('/product', productRouter)
-
 app.use('/blog', blogRouter)
-
 app.use('/about', aboutRouter)
 app.use('/cart', cartRouter)
+app.use('/checkout', checkoutRouter)
