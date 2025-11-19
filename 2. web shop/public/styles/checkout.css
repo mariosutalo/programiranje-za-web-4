@@ -2,6 +2,9 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+    background-color: var(--color4);
+    padding: 20px;
+    border-radius: var(--btn-radius);
 }
 
 .form-container-div>div {
@@ -16,4 +19,10 @@
     padding: 12px 24px;
     border-radius: var(--btn-radius);
     color: white;
+}
+
+.form-value-input {
+    padding: 10px 15px;
+    border-style: none;
+    border-radius: 8px;
 }
