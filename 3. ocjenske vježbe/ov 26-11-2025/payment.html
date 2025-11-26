@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Payment Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f7;
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+        }
+
+
+        .payment-container {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            width: 360px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+
+        .option {
+            margin-bottom: 15px;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+
+        .option input {
+            margin-right: 10px;
+        }
+
+
+        .card-fields {
+            display: none;
+            margin-top: 15px;
+        }
+
+
+        .input-field {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+
+        .input-field input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #dadada;
+            border-radius: 6px;
+        }
+
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #1a73e8;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            margin-top: 20px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <form class="payment-container" method="POST" action="/submit-payment">
+        <h2>Select Payment Method</h2>
+        <label class="option">
+            <input type="radio" name="payment" value="delivery" onclick="toggleCard(false)"> Pay on Delivery
+        </label>
+        <label class="option">
+            <input type="radio" name="payment" value="card" onclick="toggleCard(true)"> Card Payment
+        </label>
+        <div class="card-fields" id="cardFields">
+            <div class="input-field">
+                <input type="text" name="cardNumber" placeholder="Card Number" maxlength="19" />
+            </div>
+            <div class="input-field">
+                <input type="text" name="cvv" placeholder="CVV" maxlength="4" />
+            </div>
+        </div>
+        <button>Submit Payment</button>
+    </form>
+
+    <script>
+        function toggleCard(show) {
+            document.getElementById("cardFields").style.display = show ? "block" : "none";
+        }
+    </script>
+</body>

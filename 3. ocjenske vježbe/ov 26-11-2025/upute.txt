@@ -1,0 +1,9 @@
+1. Napraviti novu rutu paymentRoutes.js na koju se dođe preko /payment url-a
+1.1 Ruta treba imati / get endpoint koji prikaže payment ejs template
+1.2 Post rutu koja se poziva kada korisnik pritisne gumb submit payment
+2. Napraviti ejs template za rutu, template treba imati, header, sadržaj (prilagođeni html iz payment html) i footer
+3. Stilove iz payment.html-a iskopirati u stilove za navedenu stranicu (payment.css)
+4. Gumbu submit payment staviti boju kao na ostalim gumbima na stranici
+5. Kada se pritisne submit payment, u post ruti u konzoli ispisati ispisati sadržaj form encoded post parametara:
+payment i ako je odabrana kartica, cardNumber i cvv.
+6. U post ruti nakon ispisati varijali pozvati kod:res.redirect(req.get('Referrer') || '/')
