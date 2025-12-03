@@ -28,7 +28,7 @@ export const db = await mysql.createConnection({
 
 app.set('view engine', 'ejs')
 
-app.listen(3000)
+app.listen(3001)
 
 app.use(cookieParser())
 
