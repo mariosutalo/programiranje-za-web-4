@@ -16,3 +16,5 @@ https://www.programmerinterview.com/database-sql/example-of-prepared-statements-
 delete local and remote branch named promises-version
 git branch -d promises-version ; git push origin --delete promises-version
 git remote update origin --prune - refresh list of local branches
+
+
