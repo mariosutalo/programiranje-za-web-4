@@ -14,8 +14,9 @@ router.post('/', async (req, res) => {
     const getCartProductsQuery = `
     SELECT c.product_id as productId, c.quantity, p.price
     from cart_items as c
-    join products p on c.product_id = p.id;`
-    const cartItemsResponse = await db.execute(getCartProductsQuery)
+    join products p on c.product_id = p.id
+    where session_guid = ?;`
+    const cartItemsResponse = await db.execute(getCartProductsQuery, [req.cookies.sessionId])
     console.log('Cart items:', cartItemsResponse[0])
     await db.beginTransaction()
     try {
@@ -29,16 +30,16 @@ router.post('/', async (req, res) => {
             shippingData.phone,
             req.cookies.sessionId
         ])
-
-        
+        //collect values
+        //const insertOrderitemsSql = 'insert into order_items(product_id, quantity, price, order_id) values ?'
+        //res.redirect(`/payment`)
+        //await db.query(query, [values])
+        //const values = cartItems.map(i => [orderId, i.productId, i.qty, i.price]);
+        await db.commit()
     } catch (error) {
         await db.rollback()
         console.log('error creating order', error)
     }
-    await db.commit()
-
-
-
     res.redirect(req.get('Referrer') || '/')
 })
 

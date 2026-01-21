@@ -12,6 +12,21 @@
                 "<node_internals>/**"
             ],
             "type": "node"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Nodemon Launch",
+            "runtimeExecutable": "nodemon",
+            "cwd": "${workspaceFolder}/2. web shop",
+            "program": "${workspaceFolder}/2. web shop/app.js",
+            "restart": true,
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen",
+            "autoAttachChildProcesses": true,
+            "skipFiles": [
+                "<node_internals>/**"
+            ]
         }
     ]
 }
