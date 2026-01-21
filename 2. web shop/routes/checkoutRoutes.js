@@ -16,8 +16,8 @@ router.post('/', async (req, res) => {
     from cart_items as c
     join products p on c.product_id = p.id;`
     const cartItemsResponse = await db.execute(getCartProductsQuery)
-    //console.log('Cart items:', cartItemsResponse[0])
-    //await db.beginTransaction()
+    console.log('Cart items:', cartItemsResponse[0])
+    await db.beginTransaction()
     try {
         const createOrderSql = `insert into orders(full_name, street, zip_code, city, phone, session_guid)
                             values (?,?,?,?,?,?)`
@@ -29,10 +29,13 @@ router.post('/', async (req, res) => {
             shippingData.phone,
             req.cookies.sessionId
         ])
+
+        
     } catch (error) {
         await db.rollback()
         console.log('error creating order', error)
     }
+    await db.commit()
 
 
 
