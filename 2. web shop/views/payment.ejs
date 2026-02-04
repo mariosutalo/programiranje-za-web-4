@@ -1,12 +1,27 @@
 <!DOCTYPE html>
 <% locals.pageStyles.push('/styles/payment.css') %>
-<% locals.pageStyles.push('/styles/header.css') %>
-<%- include('./partials/head.ejs') %>
+    <% locals.pageStyles.push('/styles/header.css') %>
+        <%- include('./partials/head.ejs') %>
 
-  <body>
-    <%- include('./partials/header.ejs') %>
-      <main>
-        <h1>Payment page</h1>
-      </main>
-      <%- include('./partials/footer.ejs') %>
-  </body>
+            <body>
+                <%- include('./partials/header.ejs') %>
+                    <main>
+                        <h1>Payment details</h1>
+                        <form action="" class="payment-form">
+                            <h2>Select payment method</h2>
+                            <div class="payment-method-div">
+                                <label for="" class="payment-label">
+                                    <div class="pay-options-div">
+                                        <input type="radio">
+                                        <div>
+                                            <h3>Pay on Delivery</h3>
+                                            <p>Cash or Card upon receipt</p>
+                                        </div>
+                                    </div>
+                                    <img class="delivery-img" src="/assets/truck.png" alt="">
+                                </label>
+                            </div>
+                        </form>
+                    </main>
+                    <%- include('./partials/footer.ejs') %>
+            </body>
