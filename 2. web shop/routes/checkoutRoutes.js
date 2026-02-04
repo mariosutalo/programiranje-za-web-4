@@ -37,7 +37,6 @@ router.post('/', async (req, res) => {
             return [cartItem.productId, cartItem.quantity, cartItem.price, orderId]
         })
         const insertOrderItemsResult = await db.query(insertOrderItemsQuery, [orderItemsToInsert])
-        throw new Error('testing db rollback')
         await db.commit()
         res.redirect('/payment')
     } catch (error) {
