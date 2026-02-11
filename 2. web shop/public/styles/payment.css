@@ -6,13 +6,14 @@
     padding: 20px;
 }
 
-.delivery-img {
+.payment-type-img {
     width: 50px;
     object-fit: contain;
 }
 
 .pay-options-div {
     display: flex;
+    gap: 15px;
 }
 
 main {
@@ -26,4 +27,16 @@ main {
     background-color: rgb(238, 238, 238);
     padding: 20px;
     border-radius: 30px;
+}
+
+.pay-options-div div p {
+    font-size: var(--12px);
+    color: var(--color5);
+    font-weight: 500;
+}
+
+.payment-method-div {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 20px;
 }
