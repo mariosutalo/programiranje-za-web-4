@@ -6,32 +6,45 @@
             <body>
                 <%- include('./partials/header.ejs') %>
                     <main>
-                        <h1>Payment details</h1>
-                        <form action="" class="payment-form">
-                            <h2>Select payment method</h2>
-                            <div class="payment-method-div">
-                                <label for="" class="payment-label">
-                                    <div class="pay-options-div">
-                                        <input type="radio" name="paymentMethod" value="cash">
-                                        <div>
-                                            <h3>Pay on Delivery</h3>
-                                            <p>Cash or Card upon receipt</p>
-                                        </div>
+                        <section>
+                            <div class="container-div">
+                                <h1>Payment details</h1>
+                                <form action="" class="payment-form">
+                                    <h2>Select payment method</h2>
+                                    <div class="payment-method-div">
+                                        <label for="cashRadio" class="payment-label" onchange="togglePaymentType()">
+                                            <div class="pay-options-div">
+                                                <input type="radio" name="paymentMethod" value="cash" id="cashRadio">
+                                                <div>
+                                                    <h3>Pay on Delivery</h3>
+                                                    <p>Cash or Card upon receipt</p>
+                                                </div>
+                                            </div>
+                                            <img class="payment-type-img" src="/assets/truck.png" alt="">
+                                        </label>
+                                        <label for="cardRadio" class="payment-label" onchange="togglePaymentType()">
+                                            <div class="pay-options-div">
+                                                <input type="radio" name="paymentMethod" value="card" id="cardRadio">
+                                                <div>
+                                                    <h3>Card Payment</h3>
+                                                    <p>Secure online transaction</p>
+                                                </div>
+                                            </div>
+                                            <img class="payment-type-img" src="/assets/credit card icon.webp" alt="">
+                                        </label>
                                     </div>
-                                    <img class="payment-type-img" src="/assets/truck.png" alt="">
-                                </label>
-                                <label for="" class="payment-label">
-                                    <div class="pay-options-div">
-                                        <input type="radio" name="paymentMethod" value="card">
-                                        <div>
-                                            <h3>Card Payment</h3>
-                                            <p>Secure online transaction</p>
-                                        </div>
-                                    </div>
-                                    <img class="payment-type-img" src="/assets/credit card icon.webp" alt="">
-                                </label>
+                                    <button class="confirm-payment-btn">Confirm Payment</button>
+                                </form>
                             </div>
-                        </form>
+                        </section>
                     </main>
                     <%- include('./partials/footer.ejs') %>
+                        <script>
+
+                            function togglePaymentType() {
+                                console.log("toggle function called")
+                            }
+
+
+                        </script>
             </body>

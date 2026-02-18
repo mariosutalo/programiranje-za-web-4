@@ -16,18 +16,22 @@
     gap: 15px;
 }
 
-main {
-    width: 100%;
-    max-width: 900px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
 .payment-form {
     background-color: rgb(238, 238, 238);
     padding: 20px;
     border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 30px;
 }
+
+.payment-form h2 {
+    font-size: 14px;
+    color: var(--color7);
+    text-transform: uppercase;
+}
+
 
 .pay-options-div div p {
     font-size: var(--12px);
@@ -40,3 +44,21 @@ main {
     grid-template-columns: 1fr 1fr;
     column-gap: 20px;
 }
+
+.confirm-payment-btn {
+    color: white;
+    padding: 15px;
+    background-color: var(--primary);
+    font-family: var(--primary-font);
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: var(--btn-radius);
+    border: none;
+    cursor: pointer;
+    margin-top: 30px;
+}
+
+.confirm-payment-btn:hover {
+    background-color: var(--color6);
+}
+

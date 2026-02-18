@@ -18,6 +18,8 @@
     --btn-radius: 12px;
     --color4: rgb(240, 240, 240);
     --color5: #6b7280;
+    --color6: #b02e68;
+    --color7: #494949;
 }
 
 footer {
@@ -41,7 +43,6 @@ footer p {
     margin-left: auto;
     margin-right: auto;
     width: 1100px;
-    min-height: 70vh;
     padding: 30px 20px;
 }
 
