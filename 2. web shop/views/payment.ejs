@@ -12,9 +12,10 @@
                                 <form action="" class="payment-form">
                                     <h2>Select payment method</h2>
                                     <div class="payment-method-div">
-                                        <label for="cashRadio" class="payment-label" onchange="togglePaymentType()">
+                                        <label for="cashRadio" class="payment-label">
                                             <div class="pay-options-div">
-                                                <input type="radio" name="paymentMethod" value="cash" id="cashRadio">
+                                                <input type="radio" name="paymentMethod" value="cash" id="cashRadio"
+                                                    onchange="togglePaymentType(this)">
                                                 <div>
                                                     <h3>Pay on Delivery</h3>
                                                     <p>Cash or Card upon receipt</p>
@@ -22,9 +23,10 @@
                                             </div>
                                             <img class="payment-type-img" src="/assets/truck.png" alt="">
                                         </label>
-                                        <label for="cardRadio" class="payment-label" onchange="togglePaymentType()">
+                                        <label for="cardRadio" class="payment-label">
                                             <div class="pay-options-div">
-                                                <input type="radio" name="paymentMethod" value="card" id="cardRadio">
+                                                <input type="radio" name="paymentMethod" value="card" id="cardRadio"
+                                                    onchange="togglePaymentType(this)">
                                                 <div>
                                                     <h3>Card Payment</h3>
                                                     <p>Secure online transaction</p>
@@ -40,11 +42,15 @@
                     </main>
                     <%- include('./partials/footer.ejs') %>
                         <script>
-
-                            function togglePaymentType() {
-                                console.log("toggle function called")
+                            function togglePaymentType(radioSource) {
+                                if (radioSource.id === 'cashRadio') {
+                                    const cardPaymentDivId = document.getElementById('cardPaymentDivId')
+                                    if(cardPaymentDivId) {
+                                        cardPaymentDivId.remove()
+                                    }
+                                } else if (radioSource.id === 'cardRadio') {
+                                    console.log('card radio selected')
+                                }
                             }
-
-
                         </script>
             </body>
