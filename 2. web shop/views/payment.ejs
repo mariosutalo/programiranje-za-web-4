@@ -35,6 +35,12 @@
                                             <img class="payment-type-img" src="/assets/credit card icon.webp" alt="">
                                         </label>
                                     </div>
+                                    <fieldset id="card-payment-div">
+                                        <label for="card-number">Card Number</label>
+                                        <input type="number" id="card-number" name="cardNumber">
+                                        <label for="card-expiry">Expiry Date</label>
+                                        <input type="number" id="card-expiry" name="cardExpiry">
+                                    </fieldset>
                                     <button class="confirm-payment-btn">Confirm Payment</button>
                                 </form>
                             </div>
@@ -43,13 +49,22 @@
                     <%- include('./partials/footer.ejs') %>
                         <script>
                             function togglePaymentType(radioSource) {
+                                const cardPaymentFieldSet = document.getElementById('card-payment-div')
+                                if(!cardPaymentFieldSet) {
+                                    return
+                                }
                                 if (radioSource.id === 'cashRadio') {
-                                    const cardPaymentDivId = document.getElementById('cardPaymentDivId')
-                                    if(cardPaymentDivId) {
-                                        cardPaymentDivId.remove()
-                                    }
+                                    //cardPaymentDiv.innerHTML = ""
+                                    cardPaymentFieldSet.style.display = 'none'
+                                    cardPaymentFieldSet.disabled = true
                                 } else if (radioSource.id === 'cardRadio') {
-                                    console.log('card radio selected')
+                                    // const content = `
+                                    // <label>Card number</label>
+                                    // <input type="number"></input>
+                                    // `
+                                    // cardPaymentDiv.innerHTML = content
+                                    cardPaymentFieldSet.style.display = 'block'
+                                    cardPaymentFieldSet.disabled = false
                                 }
                             }
                         </script>

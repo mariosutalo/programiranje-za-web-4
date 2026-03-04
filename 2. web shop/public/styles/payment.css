@@ -62,3 +62,7 @@
     background-color: var(--color6);
 }
 
+fieldset {
+    border: none;
+}
+
