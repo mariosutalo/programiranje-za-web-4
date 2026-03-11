@@ -50,6 +50,29 @@ h1, h2, h3, h4, p {
     margin: 0;
 }
 
+.form-value-input {
+    padding: 10px 15px;
+    border-style: none;
+    border-radius: 8px;
+}
+
+.form-input-label {
+    font-size: var(--14px);
+    font-weight: 700;
+}
+
+.form-input-label-div {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.grouped-input-div {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
 
   
 
