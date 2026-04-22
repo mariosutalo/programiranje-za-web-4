@@ -11,6 +11,7 @@ import { v4 as uuidv4 } from 'uuid'
 import cartRouter from './routes/cartRoute.js'
 import checkoutRouter from './routes/checkoutRoutes.js'
 import paymentRouter from './routes/payment.js'
+import summaryRouter from './routes/summaryRoutes.js'
 
 const app = express()
 
@@ -80,3 +81,4 @@ app.use('/about', aboutRouter)
 app.use('/cart', cartRouter)
 app.use('/checkout', checkoutRouter)
 app.use('/payment', paymentRouter)
+app.use('/summary', summaryRouter)
